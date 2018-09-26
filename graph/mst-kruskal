@@ -1,3 +1,6 @@
+//kruskal algo for mst
+//runs in O((V+E)logV))
+
 #include <bits/stdc++.h>
 using namespace std ;
  
