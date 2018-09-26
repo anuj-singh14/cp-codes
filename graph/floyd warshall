@@ -1,0 +1,65 @@
+//O(V*V*V)
+
+#include<bits/stdc++.h>
+#define umap unordered_map
+#define uset unordered_set 
+#define sz size()
+#define mem(a,x) memset((a),(x),sizeof(a))
+#define pub push_back
+#define in insert
+#define tez ios_base::sync_with_stdio(false) ; cin.tie(NULL) ; cout.tie(NULL) ;
+#define prf fixed<<setprecision(10)
+#define fi first
+#define se second
+#define endl '\n'
+#define min3(a,b,c) min(a,min(b,c))
+#define min4(a,b,c,d) min(a,min3(b,c,d))
+#define max3(a,b,c) max(a,max(b,c))
+#define max4(a,b,c,d) max(a,max3(b,c,d))
+#define t() ll t; cin>>t; while(t--)
+#define frw(i,a,b) for(ll (i)=(a) ; (i)<(b) ; (i)++)
+#define bck(i,a,b) for(ll (i)=(a) ; (i)>(b) ; (i)--)
+#define all(a) (a).begin(),(a).end()
+#define rall(a) (a).rbegin(),(a).rend()
+#define inp(a,n) frw(i,0,n){ll j; cin>>j; (a).pub(j);} a.resize(n) ;
+#define nl cout<<'\n' ;
+#define bl cout<<' ' ;
+#define INF LONG_MAX
+#define MOD 1000000007
+#define mm(x,y) ((x)%MOD*(y)%MOD)%MOD
+
+using namespace std ;
+
+typedef long double ld ;
+typedef long long ll ;
+typedef unsigned long long ull ;
+typedef vector<ll> vll ;
+typedef pair<ll,ll> pll ;
+typedef pair<ll,pll> plll ;
+typedef vector<pll> vpll ;
+typedef map<ll,ll> mll ;
+typedef umap<ll,ll> umll ;
+typedef set<ll> sll ;
+typedef uset<ll> usll ;
+
+int main(){
+    tez
+    ll n,m ;
+    cin>>n>>m ;
+    ll graph[n+1][n+1] ;
+    frw(i,1,n+1){
+        fill(graph[i],graph[i]+n+1,mod) ;
+        graph[i][i]=0 ;
+    }
+    while(m--){
+        ll x,y,z ;
+        cin>>x>>y>>z ;
+        graph[x][y]=z ;
+    }
+    frw(k,1,n+1)
+        frw(i,1,n+1)
+            frw(j,1,n+1)
+                graph[i][j]=min(graph[i][j],graph[i][k]+graph[k][j]) ;
+}
+
+
