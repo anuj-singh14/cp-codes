@@ -1,0 +1,102 @@
+#include<bits/stdc++.h>
+#define pque priority_queue
+#define umap unordered_map
+#define uset unordered_set 
+#define sz size()
+#define bsrch binary_search
+#define mem(a,x) memset((a),(x),sizeof(a))
+#define pub push_back
+#define eb emplace_back
+#define lob lower_bound
+#define upb upper_bound
+#define in insert
+#define sb __builtin_popcountll
+#define adv advance
+#define tez ios_base::sync_with_stdio(false) ; cin.tie(NULL) ; cout.tie(NULL) ;
+#define prf fixed<<setprecision(10)
+#define be begin()
+#define en end()
+#define fi first
+#define se second
+#define endl '\n'
+#define min3(a,b,c) min(a,min(b,c))
+#define min4(a,b,c,d) min(a,min3(b,c,d))
+#define max3(a,b,c) max(a,max(b,c))
+#define max4(a,b,c,d) max(a,max3(b,c,d))
+#define t() ll t; cin>>t; while(t--)
+#define frw(i,a,b) for(ll (i)=(a) ; (i)<(b) ; (i)++)
+#define tr(c,i) for(__typeof((c).begin()) i=(c).begin(); i!=(c).end(); i++) 
+#define bck(i,a,b) for(ll (i)=(a) ; (i)>(b) ; (i)--)
+#define all(a) (a).be,(a).en
+#define rall(a) (a).rbegin(),(a).rend()
+#define inp(a,n) frw(i,0,n){ll j; cin>>j; (a).pub(j);} a.resize(n) ;
+#define ite iterator
+#define nl cout<<'\n' ;
+#define bl cout<<' ' ;
+#define INF LONG_MAX
+#define MOD 1000000007
+#define mm(x,y) ((x)%MOD*(y)%MOD)%MOD
+
+using namespace std ;
+
+typedef long double ld ;
+typedef long long ll ;
+typedef unsigned long long ull ;
+typedef vector<ll> vll ;
+typedef vector<bool> vb ;
+typedef vector<string> vss ;
+typedef pair<ll,ll> pll ;
+typedef pair<ll,pll> plll ;
+typedef vector<pll> vpll ;
+typedef map<ll,ll> mll ;
+typedef umap<ll,ll> umll ;
+typedef set<ll> sll ;
+typedef uset<ll> usll ;
+typedef multiset<ll> msll ;
+
+ll MAX = 1e5 + 5 ;
+vll fibo(MAX) ;
+
+void init() {
+	fibo[0] = 0, fibo[1] = 1;
+	for(int i = 2; i < MAX; ++i) {
+		fibo[i] = fibo[i-1] + fibo[i-2] ;
+		fibo[i] %= MOD ;
+	}
+}
+
+inline ll fib(ll& x, ll& y, ll n) {
+	if (n < 100000) {
+		x = fibo[n], y = fibo[n+1];
+	}
+	else {
+		ll a, b;
+		fib(a, b, n >> 1);
+		ll z = (b << 1) - a;
+		if (z < 0) z += MOD;
+		x = mm(a,z) ;
+		y = mm(a,a) + mm(b,b) ;
+		y %= MOD ;
+		if (n & 1) {
+			x += y ;
+			x %= MOD ;
+			x ^= y ^= x ^= y;
+		}
+	}
+	return x;
+}
+
+
+int main(){
+    tez
+    init() ;
+    t(){
+        ll n ;
+        cin>>n ;
+        ll x=0 ;
+        ll y=1 ;
+        cout<<fib(x,y,n)<<endl ;
+    }
+}
+
+
