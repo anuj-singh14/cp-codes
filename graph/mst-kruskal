@@ -55,22 +55,34 @@ ll baap(vll &v,ll x){
     return x ;
 }
  
-void ans(pair<ll,pll> p[],vll &v,ll m){
+vll a ;
+ll baap(vll &v,ll x){
+    while(v[x]!=x){
+        v[x]=v[v[x]] ;
+        x=v[x] ;
+    }
+    return x ;
+}
+
+ll ans(pair<ll,pll> p[],vll &v,ll m){
+    ll k=0 ;
     frw(i,0,m){
         ll x=p[i].se.fi ;
         ll y=p[i].se.se ;
         ll w=p[i].fi ;
         if(baap(v,x)!=baap(v,y)){
             a.pub(w) ;
+            k++ ;
             v[baap(v,x)]=v[baap(v,y)] ;
         }
     }
+    return k ;
 }
- 
+
 int main(){
     tez
-    ll n,m,k ;
-    cin>>n>>m>>k ;
+    ll n,m ;
+    cin>>n>>m ;
     vll c(n+1) ;
     pair<ll,pll> p[m] ;
     frw(i,0,n+1)    c[i]=i ;
@@ -80,7 +92,5 @@ int main(){
         p[i]=mp(w,mp(x,y)) ;
     }
     sort(p,p+m) ;
-    ans(p,c,m) ;
+    ll x=ans(p,c,m) ;
 }
- 
- 
