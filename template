@@ -26,7 +26,9 @@
 #define bl cout<<' ' ;
 #define INF LONG_MAX
 #define MOD 1000000007
-#define mm(x,y) ((x)%MOD*(y)%MOD)%MOD
+#define mm(x,y) ((x)%MOD * (y)%MOD) % MOD
+#define aa(x,y) ((x)%MOD + (y)%MOD) % MOD
+#define ss(x,y) ((x)%MOD - (y)%MOD + MOD) % MOD
 
 using namespace std ;
 
@@ -37,10 +39,6 @@ typedef vector<ll> vll ;
 typedef pair<ll,ll> pll ;
 typedef pair<ll,pll> plll ;
 typedef vector<pll> vpll ;
-typedef map<ll,ll> mll ;
-typedef umap<ll,ll> umll ;
-typedef set<ll> sll ;
-typedef uset<ll> usll ;
 
 int main(){
     tez
