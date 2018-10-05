@@ -24,7 +24,6 @@
 #define bl cout<<' ' ;
 #define INF LONG_MAX
 #define MOD 1000000007
-#define mm(x,y) ((x)%MOD * (y)%MOD) % MOD
 #define aa(x,y) ((x)%MOD + (y)%MOD) % MOD
 #define ss(x,y) ((x)%MOD - (y)%MOD + MOD) % MOD
 
@@ -41,8 +40,9 @@ typedef vector<pll> vpll ;
 // works in O(1), but may result wrong after 1e18
 ll mulmod(ll a, ll b, ll m) {
 	ll q = (ll)(((ld)a*(ld)b)/(ld)m);
-	ll r = a * b - q * m;
-	if(r > m) r %= m; if( r < 0) r += m;
+	ll r = a*b - q*m ;
+	r += m ;
+	r %= m ;
 	return r;
 }
 
