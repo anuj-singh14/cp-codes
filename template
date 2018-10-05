@@ -26,7 +26,6 @@
 #define bl cout<<' ' ;
 #define INF LONG_MAX
 #define MOD 1000000007
-#define mm(x,y) ((x)%MOD * (y)%MOD) % MOD
 #define aa(x,y) ((x)%MOD + (y)%MOD) % MOD
 #define ss(x,y) ((x)%MOD - (y)%MOD + MOD) % MOD
 
