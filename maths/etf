@@ -66,16 +66,16 @@ void generate_etf() {
 			phi[i] = i-1;
 			primes.emplace_back(i);
 		}
-		for (ll j = 0; j < primes.size(); ++j) {
-			ll x = i * primes[j];
+		for (ll j:primes) {
+			ll x = i * j;
 			if (x >= MAX) break;
-			lp[x] = primes[j];
-			if (i % primes[j] == 0) {
-				phi[x] = phi[i] * primes[j];
+			lp[x] = j;
+			if (i % j == 0) {
+				phi[x] = phi[i] * j;
 				break;
 			}
 			else {
-				phi[x] = phi[i] * (primes[j]-1);
+				phi[x] = phi[i] * (j-1);
 			}
 		}
 	}
