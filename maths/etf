@@ -38,6 +38,50 @@ typedef pair<ll,ll> pll ;
 typedef pair<ll,pll> plll ;
 typedef vector<pll> vpll ;
 
+ll MAX = 1e7 + 5 ;
+vll lp(MAX) ;
+vll primes(MAX) ;
+vll phi(MAX) ;
+
+// works in O(N loglogN)
+void generate_etf() {
+	phi[1] = 1;
+	for(int i = 2; i < MAX; i++) {
+		if(!phi[i]) {
+			phi[i] = i-1;
+			for(int j = (i<<1); j<MAX; j += i) {
+				if(!phi[j]) phi[j] = j;
+				phi[j] = phi[j]/i*(i-1);
+			}
+		}
+	}
+}
+
+//works in O(N)
+void generate_etf() {
+	lp[1] = phi[1] = 1;
+	for (ll i = 2; i < MAX; ++i) {
+		if (!lp[i]) {
+			lp[i] = i;
+			phi[i] = i-1;
+			primes.emplace_back(i);
+		}
+		for (ll j = 0; j < primes.size(); ++j) {
+			ll x = i * primes[j];
+			if (x >= MAX) break;
+			lp[x] = primes[j];
+			if (i % primes[j] == 0) {
+				phi[x] = phi[i] * primes[j];
+				break;
+			}
+			else {
+				phi[x] = phi[i] * (primes[j]-1);
+			}
+		}
+	}
+}
+
+//phi of any N in O(sqrtN)
 ll phi(ll n){
     ll res = n ;
     for(ll i = 2 ; i*i <= n ; ++i){
@@ -49,7 +93,6 @@ ll phi(ll n){
     if(n > 1)   res -= res/n ;
     return res ;
 }
-
 int main(){
     tez
     ll n ;
