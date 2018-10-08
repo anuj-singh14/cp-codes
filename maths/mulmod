@@ -1,4 +1,5 @@
 #include<bits/stdc++.h>
+using namespace std ;
 #define umap unordered_map
 #define uset unordered_set 
 #define sz size()
@@ -19,16 +20,9 @@
 #define bck(i,a,b) for(ll (i)=(a) ; (i)>(b) ; (i)--)
 #define all(a) (a).begin(),(a).end()
 #define rall(a) (a).rbegin(),(a).rend()
-#define inp(a,n) frw(i,0,n){ll j; cin>>j; (a).pub(j);} a.resize(n) ;
 #define nl cout<<'\n' ;
-#define bl cout<<' ' ;
 #define INF LONG_MAX
 #define MOD 1000000007
-#define aa(x,y) ((x)%MOD + (y)%MOD) % MOD
-#define ss(x,y) ((x)%MOD - (y)%MOD + MOD) % MOD
-
-using namespace std ;
-
 typedef long double ld ;
 typedef long long ll ;
 typedef unsigned long long ull ;
