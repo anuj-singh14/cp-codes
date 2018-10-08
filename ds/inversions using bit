@@ -1,4 +1,5 @@
 #include<bits/stdc++.h>
+using namespace std ;
 #define umap unordered_map
 #define uset unordered_set 
 #define sz size()
@@ -22,9 +23,6 @@
 #define nl cout<<'\n' ;
 #define INF LONG_MAX
 #define MOD 1000000007
-
-using namespace std ;
-
 typedef long double ld ;
 typedef long long ll ;
 typedef unsigned long long ull ;
