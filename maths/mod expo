@@ -31,6 +31,14 @@ typedef pair<ll,ll> pll ;
 typedef pair<ll,pll> plll ;
 typedef vector<pll> vpll ;
 
+ll mulmod(ll a, ll b, ll m) {
+	ll q = (ll)(((ld)a*(ld)b)/(ld)m);
+	ll r = a*b - q*m ;
+	r += m ;
+	r %= m ;
+	return r;
+}
+
 ll fpow(ll x , ll y, ll p){
     ll res = 1 ;
     while(y > 0){
