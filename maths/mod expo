@@ -19,12 +19,9 @@
 #define bck(i,a,b) for(ll (i)=(a) ; (i)>(b) ; (i)--)
 #define all(a) (a).begin(),(a).end()
 #define rall(a) (a).rbegin(),(a).rend()
-#define inp(a,n) frw(i,0,n){ll j; cin>>j; (a).pub(j);} a.resize(n) ;
 #define nl cout<<'\n' ;
-#define bl cout<<' ' ;
 #define INF LONG_MAX
 #define MOD 1000000007
-#define mm(x,y) ((x)%MOD*(y)%MOD)%MOD
 
 using namespace std ;
 
@@ -35,10 +32,6 @@ typedef vector<ll> vll ;
 typedef pair<ll,ll> pll ;
 typedef pair<ll,pll> plll ;
 typedef vector<pll> vpll ;
-typedef map<ll,ll> mll ;
-typedef umap<ll,ll> umll ;
-typedef set<ll> sll ;
-typedef uset<ll> usll ;
 
 ll fpow(ll x , ll y, ll p){
     ll res = 1 ;
