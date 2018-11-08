@@ -40,7 +40,7 @@ ll mulmod(ll a, ll b, ll m) {
 ll fpow(ll x, ll y, ll m){
     if(y == 0)    return 1;
     ll p = fpow(x, y >> 1, m) % m;
-    p = mulmod(p,p,MOD); 
+    p = mulmod(p,p,m); 
     return (y & 1) ? mulmod(x,p,m) : p ;
 }
 
