@@ -34,19 +34,14 @@ typedef vector<pll> vpll ;
 ll mulmod(ll a, ll b, ll m) {
 	ll q = (ll)(((ld)a*(ld)b)/(ld)m);
 	ll r = a*b - q*m ;
-	r += m ;
-	r %= m ;
-	return r;
+	return (r < 0)? r+m : r%m ;
 }
 
-ll fpow(ll x , ll y, ll p){
-    ll res = 1 ;
-    while(y > 0){
-        if(y & 1) res = mulmod(res,x,p) ;
-        x = mulmod(x,x,p) ;
-        y >>= 1 ;
-    }
-    return res ;
+ll fpow(ll x, ll y, ll m){
+    if(y == 0)    return 1;
+    ll p = fpow(x, y >> 1, m) % m;
+    p = mulmod(p,p,MOD); 
+    return (y & 1) ? mulmod(x,p,m) : p ;
 }
 
 int main(){
