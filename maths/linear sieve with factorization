@@ -1,0 +1,62 @@
+#include<bits/stdc++.h>
+using namespace std ;
+#define umap unordered_map
+#define uset unordered_set 
+#define sz size()
+#define mem(a,x) memset((a),(x),sizeof(a))
+#define pub push_back
+#define in insert
+#define tez ios_base::sync_with_stdio(false) ; cin.tie(NULL) ; cout.tie(NULL) ;
+#define prf fixed<<setprecision(10)
+#define fi first
+#define se second
+#define endl '\n'
+#define min3(a,b,c) min(a,min(b,c))
+#define min4(a,b,c,d) min(a,min3(b,c,d))
+#define max3(a,b,c) max(a,max(b,c))
+#define max4(a,b,c,d) max(a,max3(b,c,d))
+#define t() ll t; cin>>t; while(t--)
+#define frw(i,a,b) for(ll (i)=(a) ; (i)<(b) ; (i)++)
+#define bck(i,a,b) for(ll (i)=(a) ; (i)>(b) ; (i)--)
+#define all(a) (a).begin(),(a).end()
+#define rall(a) (a).rbegin(),(a).rend()
+#define nl cout<<'\n' ;
+#define INF LONG_MAX
+#define MOD 1000000007
+typedef long double ld ;
+typedef long long ll ;
+typedef unsigned long long ull ;
+typedef vector<ll> vll ;
+typedef pair<ll,ll> pll ;
+typedef pair<ll,pll> plll ;
+typedef vector<bool> vbool ;
+typedef vector<pll> vpll ;
+
+//linear sieve algo from https://cp-algorithms.com/algebra/prime-sieve-linear.html
+//time complexity : O(N)
+ll N = 1e6 + 5 ;
+vll pr ;
+vll lp(N,0) ;
+
+void precomp(){
+    lp[1] = 1 ;
+    frw(i,2,N){
+        if(!lp[i]){
+            lp[i] = i ;
+            pr.pub(i) ;
+        }
+        for(ll j = 0 ; j < pr.sz and pr[j] <= lp[i] and i*pr[j] < N ; j++){
+            lp[i*pr[j]] = pr[j] ;
+        }
+    }
+}
+
+//function to generate prime factorization of a number in O(logn)
+umap<ll,ll> fac(ll n){
+    umap<ll,ll> m ;
+    while(n != 1){
+        m[lp[n]] ++ ;
+        n /= lp[n] ;
+    }
+    return m ;
+}
