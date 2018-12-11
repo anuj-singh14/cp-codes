@@ -19,16 +19,19 @@ using namespace std ;
 #define all(a) (a).begin(),(a).end()
 #define rall(a) (a).rbegin(),(a).rend()
 #define nl cout<<'\n' ;
-#define INF LONG_MAX
+#define INF LONG_LONG_MAX
 #define MOD 1000000007
 typedef long double ld ;
 typedef long long ll ;
 typedef unsigned long long ull ;
 typedef vector<ll> vll ;
-typedef pair<ll,ll> pll ;
-typedef pair<ll,pll> plll ;
+typedef vector<vll> vvll ;
+typedef vector<string> vss ;
+typedef vector<char> vch ;
 typedef vector<bool> vbool ;
 typedef vector<pll> vpll ;
+typedef pair<ll,ll> pll ;
+typedef pair<ll,pll> plll ;
 
 int main(){
     tez
