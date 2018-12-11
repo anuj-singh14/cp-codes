@@ -29,9 +29,9 @@ typedef vector<vll> vvll ;
 typedef vector<string> vss ;
 typedef vector<char> vch ;
 typedef vector<bool> vbool ;
-typedef vector<pll> vpll ;
 typedef pair<ll,ll> pll ;
 typedef pair<ll,pll> plll ;
+typedef vector<pll> vpll ;
 
 int main(){
     tez
