@@ -48,35 +48,26 @@ typedef set<ll> sll ;
 typedef uset<ll> usll ;
 typedef multiset<ll> msll ;
 
-vll a ;
+vll c ;
 
-ll baap(vll &v,ll x){
-    while(v[x]!=x){
-        v[x]=v[v[x]] ;
-        x=v[x] ;
-    }
-    return x ;
-}
- 
-vll a ;
-ll baap(vll &v,ll x){
-    while(v[x]!=x){
-        v[x]=v[v[x]] ;
-        x=v[x] ;
+ll root(ll x){
+    while(a[x]!=x){
+        a[x]=a[a[x]] ;
+        x=a[x] ;
     }
     return x ;
 }
 
-ll ans(pair<ll,pll> p[],vll &v,ll m){
+ll ans(pair<ll,pll> p[], ll m){
     ll k=0 ;
     frw(i,0,m){
         ll x=p[i].se.fi ;
         ll y=p[i].se.se ;
         ll w=p[i].fi ;
-        if(baap(v,x)!=baap(v,y)){
+        if(root(x)!=root(y)){
             a.pub(w) ;
             k++ ;
-            v[baap(v,x)]=v[baap(v,y)] ;
+            c[root(x)]=c[root(y)] ;
         }
     }
     return k ;
@@ -86,14 +77,14 @@ int main(){
     tez
     ll n,m ;
     cin>>n>>m ;
-    vll c(n+1) ;
+    c.reserve(n + 1) ;
     pair<ll,pll> p[m] ;
     frw(i,0,n+1)    c[i]=i ;
     frw(i,0,m){
         ll x,y,w ;
         cin>>x>>y>>w ;
-        p[i]=mp(w,mp(x,y)) ;
+        p[i]={w, {x, y}} ;
     }
     sort(p,p+m) ;
-    ll x=ans(p,c,m) ;
+    ll x=ans(p,m) ;
 }
