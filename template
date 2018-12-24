@@ -19,8 +19,6 @@ using namespace std ;
 #define all(a) (a).begin(),(a).end()
 #define rall(a) (a).rbegin(),(a).rend()
 #define nl cout<<'\n' ;
-#define INF LONG_LONG_MAX
-#define MOD 1000000007
 typedef long double ld ;
 typedef long long ll ;
 typedef unsigned long long ull ;
@@ -32,9 +30,37 @@ typedef vector<bool> vbool ;
 typedef pair<ll,ll> pll ;
 typedef pair<ll,pll> plll ;
 typedef vector<pll> vpll ;
+const ll INF = 6e15 ;
+const ll MOD = 1e9 + 7 ;
+
+void add(ll &a, ll b){
+	a += b ;
+	if(a >= MOD)	a -= MOD ;
+}
+
+void sub(ll &a, ll b){
+	a %= MOD ;
+	b %= MOD ;
+	a -= b ;
+	if(a < 0)	a += MOD ;
+}
+
+ll mulmod(ll a, ll b, ll m) {
+	ll q = (ll)(((ld)a*(ld)b)/(ld)m);
+	ll r = a*b - q*m ;
+	return (r < 0)? r+m : r%m ;
+}
+
+ll fpow(ll x, ll y, ll p){
+	ll res = 1 ;
+	while(y > 0){
+		if(y & 1)	res = mulmod(res, x, p) ;
+		x = mulmod(x, x, p) ;
+		y >>= 1 ;
+	}
+	return res ;
+}
 
 int main(){
     tez
 }
-
-
