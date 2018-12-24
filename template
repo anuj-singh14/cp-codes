@@ -4,7 +4,7 @@
 using namespace std ;
 #define umap unordered_map
 #define uset unordered_set 
-#define sz size()
+#define sz(a) ll(a.size())
 #define mem(a,x) memset((a),(x),sizeof(a))
 #define pub push_back
 #define in insert
@@ -19,6 +19,11 @@ using namespace std ;
 #define all(a) (a).begin(),(a).end()
 #define rall(a) (a).rbegin(),(a).rend()
 #define nl cout<<'\n' ;
+#define sq(x) (x) * (x)
+#define pow fuckthisshit
+#define gcd __gcd
+#define lob lower_bound
+#define upb upper_bound
 typedef long double ld ;
 typedef long long ll ;
 typedef unsigned long long ull ;
@@ -32,17 +37,20 @@ typedef pair<ll,pll> plll ;
 typedef vector<pll> vpll ;
 const ll INF = 6e15 ;
 const ll MOD = 1e9 + 7 ;
+const ll N = 1e6 + 5 ;
 
-void add(ll &a, ll b){
+ll add(ll a, ll b){
 	a += b ;
 	if(a >= MOD)	a -= MOD ;
+	return a ;
 }
 
-void sub(ll &a, ll b){
+ll sub(ll a, ll b){
 	a %= MOD ;
 	b %= MOD ;
 	a -= b ;
 	if(a < 0)	a += MOD ;
+	return a ;
 }
 
 ll mulmod(ll a, ll b, ll m) {
@@ -62,5 +70,5 @@ ll fpow(ll x, ll y, ll p){
 }
 
 int main(){
-    tez
+	tez
 }
