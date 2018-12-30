@@ -13,6 +13,6 @@ void kmp(const string &T, const string &P) {
     for (ll i = 0, k = 0; i < sz(T) ; ++i) {
         while (k && P[k] != T[i]) k = pi[k - 1];
         if (P[k] == T[i]) ++k;
-        if (k == P.size()) ++ans ;
+        if (k == sz(P)) ++ans ;
     }
 }
