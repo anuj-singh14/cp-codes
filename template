@@ -4,7 +4,7 @@
 using namespace std ;
 #define umap unordered_map
 #define uset unordered_set 
-#define sz(a) ll(a.size())
+#define sz(a) ll((a).size())
 #define mem(a,x) memset((a),(x),sizeof(a))
 #define pub push_back
 #define in insert
@@ -39,6 +39,20 @@ const ll INF = 6e15 ;
 const ll MOD = 1e9 + 7 ;
 const ll N = 1e6 + 5 ;
 
+//for debugging variable no. of parameters
+//trace(a, b, .....) ;
+#define trace(...) ZZ(#__VA_ARGS__, __VA_ARGS__)
+template <typename Arg1> 
+void ZZ(const char* name, Arg1&& arg1){
+	std::cerr << name << " = " << arg1 << endl;
+}
+template <typename Arg1, typename... Args>
+void ZZ(const char* names, Arg1&& arg1, Args&&... args){
+	const char* comma = strchr(names + 1, ',');
+	std::cerr.write(names, comma - names) << " = " << arg1;
+	ZZ(comma, args...);
+}
+
 ll add(ll a, ll b){
 	a += b ;
 	if(a >= MOD)	a -= MOD ;
@@ -57,6 +71,11 @@ ll mulmod(ll a, ll b, ll m) {
 	ll q = (ll)(((ld)a*(ld)b)/(ld)m);
 	ll r = a*b - q*m ;
 	return (r < 0)? r+m : r%m ;
+}
+
+ll pow(ll x, ll y){
+    	if(y == 0)  return 1 ;
+    	return x * pow(x, y - 1) ;
 }
 
 ll fpow(ll x, ll y, ll p){
