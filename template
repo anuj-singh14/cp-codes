@@ -7,7 +7,7 @@ using namespace std ;
 #define pub push_back
 #define in insert
 #define tez ios_base::sync_with_stdio(false) ; cin.tie(NULL) ; cout.tie(NULL) ;
-#define prf fixed<<setprecision(10)
+#define prf fixed<<setprecision
 #define fi first
 #define se second
 #define endl '\n'
@@ -21,7 +21,7 @@ using namespace std ;
 #define pow fuckthisshit
 #define ceil ceiling
 #define gcd __gcd
-#define CSB __builtin_popcount
+#define CSB __builtin_popcountll
 #define lob lower_bound
 #define upb upper_bound
 typedef long double ld ;
@@ -32,8 +32,8 @@ typedef vector<vll> vvll ;
 typedef vector<string> vss ;
 typedef vector<char> vch ;
 typedef vector<bool> vbool ;
-typedef pair<ll,ll> pll ;
-typedef pair<ll,pll> plll ;
+typedef pair<ll, ll> pll ;
+typedef pair<ll, pll> plll ;
 typedef vector<pll> vpll ;
 const ll INF = 6e15 ;
 const ll MOD = 1e9 + 7 ;
