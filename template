@@ -11,9 +11,9 @@ using namespace std ;
 #define fi first
 #define se second
 #define endl '\n'
-#define t() ll t; cin>>t; while(t--)
-#define frw(i,a,b) for(ll (i)=(a) ; (i)<(b) ; (i)++)
-#define bck(i,a,b) for(ll (i)=(a) ; (i)>(b) ; (i)--)
+#define t() ll _T ; cin >> _T ; while(_T--)
+#define frw(i, a, b) for(ll (i) = (a) ; (i) < (b) ; (i)++)
+#define bck(i, a, b) for(ll (i) = (a) ; (i) > (b) ; (i)--)
 #define all(a) (a).begin(),(a).end()
 #define rall(a) (a).rbegin(),(a).rend()
 #define nl cout<<'\n' ;
@@ -21,6 +21,7 @@ using namespace std ;
 #define pow fuckthisshit
 #define ceil ceiling
 #define gcd __gcd
+#define CSB __builtin_popcount
 #define lob lower_bound
 #define upb upper_bound
 typedef long double ld ;
