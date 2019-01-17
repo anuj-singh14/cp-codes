@@ -37,7 +37,6 @@ typedef pair<ll, pll> plll ;
 typedef vector<pll> vpll ;
 const ll INF = 6e15 ;
 const ll MOD = 1e9 + 7 ;
-const ll N = 1e6 + 5 ;
 
 //for debugging variable no. of parameters
 //trace(a, b, .....) ;
@@ -86,6 +85,8 @@ ll fpow(ll x, ll y, ll p){
 	}
 	return res ;
 }
+
+const ll N = 1e6 + 5 ;
 
 int main(){
 	tez
