@@ -143,11 +143,11 @@ Matrix<ll> power(Matrix<ll> &a, ll n) {
 int main(){
 	tez
 	ll fib[2][2] = {{1, 1}, {1, 0}};
-  base = fib;
+  	base = fib;
 	t(){
-	    ll n; cin >> n;
-    	init(base);
-    	Matrix<ll> ans = power(base, n);
-    	ans.print();
+	    	ll n; cin >> n;
+		init(base);
+		Matrix<ll> ans = power(base, n);
+		ans.print();
 	}
 }
