@@ -1,0 +1,153 @@
+const ll MOD = 1e9 + 7;
+
+ll add(ll a, ll b){
+	a += b ;
+	if(a >= MOD)	a -= MOD ;
+	return a ;
+}
+ 
+ll sub(ll a, ll b){
+	a %= MOD ;
+	b %= MOD ;
+	a -= b ;
+	if(a < 0)	a += MOD ;
+	return a ;
+}
+ 
+ll mulmod(ll a, ll b, ll m = MOD) {
+	ll q = (ll)(((ld)a*(ld)b)/(ld)m);
+	ll r = a*b - q*m ;
+	return (r < 0)? r+m : r%m ;
+}
+ 
+ll fpow(ll x, ll y, ll p = MOD){
+	ll res = 1 ;
+	while(y > 0){
+		if(y & 1)	res = mulmod(res, x, p) ;
+		x = mulmod(x, x, p) ;
+		y >>= 1 ;
+	}
+	return res ;
+}
+ 
+//taken from https://github.com/toximoron/Competitive-Coding/blob/master/C%2B%2B14/Matrices/Matrix%20Operations/matrix_modular.cpp
+const ll SZ  = 2;		//order of matrix	
+const ll LN  = 65;  //ceil(log2(n))				
+ 
+ll N = 2;					  //order	
+ 
+template <typename T> struct Matrix {
+	T data[SZ][SZ];
+	ll UP;
+	Matrix<T> () {
+		init_identity();
+		UP = MOD;
+	}
+	Matrix<T> (T base[SZ][SZ]) {
+		for(int i = 0; i < N; ++i) {
+			for(int j = 0; j < N; ++j) {
+				data[i][j] = base[i][j];
+			}
+		}
+	}
+	Matrix<T> operator =(const Matrix<T> &other) {
+		for(int i = 0; i < N; ++i) {
+			for(int j = 0; j < N; ++j) {
+				this->data[i][j] = other.data[i][j];
+			}
+		}
+		return *this;
+	}
+	Matrix<T> operator +(const Matrix<T> &other) const {
+		Matrix res;
+		for(int i = 0; i < N; ++i) {
+			for(int j = 0; j < N; ++j) {
+				res[i][j] = data[i][j] + other[i][j];
+				if (res[i][j] >= MOD) res[i][j] -= MOD;
+			}
+		}
+		return res;
+	}
+	Matrix<T> operator -(const Matrix<T> &other) const {
+		Matrix res;
+		for(int i = 0; i < N; ++i) {
+			for(int j = 0; j < N; ++j) {
+				res[i][j] = data[i][j] - other[i][j];
+				if (res[i][j] < 0) res[i][j] += MOD;
+			}
+		}
+		return res;
+	}
+	Matrix<T> operator *(const Matrix<T> &other) const {
+		Matrix res;
+		for(int i = 0; i < N; ++i) {
+			for(int j = 0; j < N; ++j) {
+				ll val = 0;
+				for(int k = 0; k < N; ++k) {
+					val = add(val, mulmod(data[i][k], other[k][j]));
+				}
+				res[i][j] = (val >= MOD ? val % MOD : val);
+			}
+		}
+		return res;
+	}
+	const T* operator[](int i) const {
+		return data[i];
+	}
+	T* operator[](int i) {
+		return data[i];
+	}
+	void init_zero() {
+		for(int i = 0; i < N; ++i) {
+			for(int j = 0; j < N; ++j) {
+				data[i][j] = 0;
+			}
+		}
+	}
+	void init_identity() {
+		for(int i = 0; i < N; ++i) {
+			for(int j = 0; j < N; ++j) {
+				data[i][j] = (i == j);
+			}
+		}
+	}
+	void print() {
+		cout << add(data[0][0], data[0][1]) << endl ;
+	}
+};
+ 
+Matrix<ll> base;
+Matrix<ll> pre[LN];
+ 
+void init(Matrix<ll> mat) {
+	pre[0].init_identity();
+	pre[1] = mat;
+	for(int i = 2; i < LN; ++i) {
+		pre[i] = pre[i-1] * pre[i-1];
+	}
+}
+ 
+Matrix<ll> power(Matrix<ll> &a, ll n) {
+	Matrix<ll> res;
+	ll cnt = 1;
+	while(n) {
+		if (n & 1) {
+			res = res * pre[cnt];
+		}
+		cnt += 1;
+		n >>= 1;
+	}
+	return res;
+}
+
+int main(){
+	tez
+	ll fib[2][2] = {{1, 1}, {1, 0}};
+  base = fib;
+	t(){
+	    ll n; cin >> n;
+    	init(base);
+    	Matrix<ll> ans = power(base, n);
+    	ans.print();
+	}
+}
