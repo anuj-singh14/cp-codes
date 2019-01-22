@@ -31,10 +31,10 @@ ll fpow(ll x, ll y, ll p = MOD){
 }
  
 //taken from https://github.com/toximoron/Competitive-Coding/blob/master/C%2B%2B14/Matrices/Matrix%20Operations/matrix_modular.cpp
-const ll SZ  = 2;		//order of matrix	
+const ll SZ  = 2;   //order of matrix	
 const ll LN  = 65;  //ceil(log2(n))				
  
-ll N = 2;					  //order	
+ll N = 2;	    //order	
  
 template <typename T> struct Matrix {
 	T data[SZ][SZ];
@@ -61,8 +61,7 @@ template <typename T> struct Matrix {
 		Matrix res;
 		for(int i = 0; i < N; ++i) {
 			for(int j = 0; j < N; ++j) {
-				res[i][j] = data[i][j] + other[i][j];
-				if (res[i][j] >= MOD) res[i][j] -= MOD;
+				res[i][j] = add(data[i][j], other[i][j]);
 			}
 		}
 		return res;
@@ -71,8 +70,7 @@ template <typename T> struct Matrix {
 		Matrix res;
 		for(int i = 0; i < N; ++i) {
 			for(int j = 0; j < N; ++j) {
-				res[i][j] = data[i][j] - other[i][j];
-				if (res[i][j] < 0) res[i][j] += MOD;
+				res[i][j] = sub(data[i][j], other[i][j]);
 			}
 		}
 		return res;
@@ -85,7 +83,7 @@ template <typename T> struct Matrix {
 				for(int k = 0; k < N; ++k) {
 					val = add(val, mulmod(data[i][k], other[k][j]));
 				}
-				res[i][j] = (val >= MOD ? val % MOD : val);
+				res[i][j] = val;
 			}
 		}
 		return res;
