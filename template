@@ -3,7 +3,7 @@ using namespace std ;
 #define umap unordered_map
 #define uset unordered_set 
 #define sz(a) ll((a).size())
-#define mem(a, x) memset((a), (x), sizeof(a))
+#define mem(a, x) memset(a, x, sizeof(a))
 #define pub push_back
 #define in insert
 #define tez ios_base::sync_with_stdio(false) ; cin.tie(NULL) ; cout.tie(NULL) ;
@@ -12,8 +12,8 @@ using namespace std ;
 #define se second
 #define endl '\n'
 #define t() ll _T ; cin >> _T ; while(_T--)
-#define frw(i, a, b) for(ll (i) = (a) ; (i) < (b) ; (i)++)
-#define bck(i, a, b) for(ll (i) = (a) ; (i) > (b) ; (i)--)
+#define frw(i, a, b) for(ll i = a ; i < b ; i++)
+#define bck(i, a, b) for(ll i = a ; i > b ; i--)
 #define all(a) (a).begin(),(a).end()
 #define rall(a) (a).rbegin(),(a).rend()
 #define nl cout << '\n' ;
