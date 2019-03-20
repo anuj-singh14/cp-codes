@@ -1,6 +1,6 @@
 const int N = 3e5 + 5;
 
-vector<int> adj(N) ;
+vector<int> adj[N] ;
 vector<bool> vis(N, 0) ;
 vector<int> low(N, 0), disc(N, 0), par(N, -1) ;
 int t = 0 ;
