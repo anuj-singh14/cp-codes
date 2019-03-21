@@ -3,6 +3,7 @@ const int N = 3e5 + 5;
 vector<int> adj[N] ;
 vector<bool> vis(N, 0) ;
 vector<int> low(N, 0), disc(N, 0), par(N, -1) ;
+vector<pair<int, int>> bridges;
 int t = 0 ;
 unordered_set<int> ap ;
 
@@ -22,6 +23,7 @@ void dfs(int x){
             if(disc[x] <= low[i] and par[x] != -1){
                 ap.in(x) ;
             }
+            if(low[i] > disc[x])    bridges.pub({x, i});
         }   else
         if(i != par[x]){
             low[x] = min(low[x], disc[i]) ;
