@@ -1,117 +1,55 @@
-#include<bits/stdc++.h>
-#define pque priority_queue
-#define umap unordered_map
-#define uset unordered_set 
-#define sz size()
-#define bsrch binary_search
-#define mem(a,x) memset((a),(x),sizeof(a))
-#define pub push_back
-#define eb emplace_back
-#define lob lower_bound
-#define upb upper_bound
-#define in insert
-#define sb __builtin_popcountll
-#define adv advance
-#define tez ios_base::sync_with_stdio(false) ; cin.tie(NULL) ; cout.tie(NULL) ;
-#define prf fixed<<setprecision(10)
-#define be begin()
-#define en end()
-#define fi first
-#define se second
-#define endl '\n'
-#define min3(a,b,c) min(a,min(b,c))
-#define min4(a,b,c,d) min(a,min3(b,c,d))
-#define max3(a,b,c) max(a,max(b,c))
-#define max4(a,b,c,d) max(a,max3(b,c,d))
-#define t() ll t; cin>>t; while(t--)
-#define frw(i,a,b) for(ll (i)=(a) ; (i)<(b) ; (i)++)
-#define tr(c,i) for(__typeof((c).begin()) i=(c).begin(); i!=(c).end(); i++) 
-#define bck(i,a,b) for(ll (i)=(a) ; (i)>(b) ; (i)--)
-#define all(a) (a).be,(a).en
-#define rall(a) (a).rbegin(),(a).rend()
-#define inp(a,n) frw(i,0,n){ll j; cin>>j; (a).pub(j);} a.resize(n) ;
-#define ite iterator
-#define nl cout<<'\n' ;
-#define bl cout<<' ' ;
-#define INF LONG_MAX
-#define MOD 1000000007
+const int MAX = 1e5 + 5;
+const int LIM = 4e5 + 5;        
 
-using namespace std ;
+vi a(MAX), seg(LIM);
 
-typedef long double ld ;
-typedef long long ll ;
-typedef unsigned long long ull ;
-typedef vector<ll> vll ;
-typedef vector<bool> vb ;
-typedef vector<string> vss ;
-typedef pair<ll,ll> pll ;
-typedef pair<ll,pll> plll ;
-typedef vector<pll> vpll ;
-typedef map<ll,ll> mll ;
-typedef umap<ll,ll> umll ;
-typedef set<ll> sll ;
-typedef uset<ll> usll ;
-typedef multiset<ll> msll ;
-
-const int N = 1e5 + 5 ;
-vll tree(4*N) ;
-vll a(N) ;
-
-void build(ll node,ll s,ll e){
-    if(s==e){
-        tree[node]=a[s] ;
-        return ;
-    }
-    ll m=(s+e)>>1 ;
-    build(2*node,s,m) ;
-    build(2*node+1,m+1,e) ;
-    tree[node]=min(tree[2*node],tree[2*node+1]) ;
+int combine(int &a, int &b) {
+	return __gcd(a, b);
 }
 
-void upd(ll node,ll s,ll e,ll id,ll val){
-    if(s==e){
-        a[id]=val ;
-        tree[node]=val ;
-        return ;
-    }
-    ll m=(s+e)>>1 ;
-    if(s<=id && id<=m)
-        upd(2*node,s,m,id,val) ;
-    else
-        upd(2*node+1,m+1,e,id,val) ;
-    tree[node]=min(tree[2*node],tree[2*node+1]) ;
+void build(int node, int i, int j) {
+	if (i == j) {
+		//base case : leaf node information to be stored here
+		seg[node] = a[i];
+		return ;
+	}
+	int mid = (i + j) / 2;
+	build(node*2, i, mid);
+	build(node*2 + 1, mid + 1, j);
+	seg[node] = combine(seg[2*node], seg[2*node+1]);
 }
 
-ll query(ll node,ll s,ll e,ll l,ll r){
-    if(r<s || e<l)
-        return INF ;
-    if(l<=s && e<=r)
-        return tree[node] ;
-    ll m=(s+e)>>1 ;
-    ll p1=query(2*node,s,m,l,r) ;
-    ll p2=query(2*node+1,m+1,e,l,r) ;
-    return min(p1,p2) ;
+void update(int node, int i, int j, int x, int y) {
+	if (i > x || j < x) {
+		return ;
+	}
+	if (i == j) {
+		//base case : leaf node information to be stored here
+		seg[node] = y;
+		return ;
+	}
+	int mid = (i + j) / 2;
+	update(node*2, i, mid, x, y);
+	update(node*2 + 1, mid + 1, j, x, y);
+	seg[node] = combine(seg[2*node], seg[2*node+1]);
 }
 
-int main(){
-    tez
-    ll n ;
-    ll q ;
-    cin>>n>>q ;
-    frw(i,1,n+1)  cin>>a[i] ;
-    build(1,1,n) ;
-    while(q--){
-        char c ;
-        ll x ;
-        ll y ;
-        cin>>c>>x>>y ;
-        if(c=='q'){
-            cout<<query(1,1,n,x,y)<<endl ;
-            cout.flush();
-        }
-        else if(c=='u')   
-            upd(1,1,n,x,y) ;
-    }
+int query(int node, int i, int j, int l, int r) {
+	if (l <= i && j <= r) {
+		return seg[node];
+	}
+	int mid = (i + j) / 2;
+	if (l <= mid) {
+		if (r <= mid) {
+			return query(node*2, i, mid, l, r);
+		}
+		else {
+			int a = query(node*2, i, mid, l, r);
+			int b = query(node*2 + 1,  mid + 1, j, l, r);
+			return combine(a, b);
+		}
+	}
+	else {
+		return query(node*2 + 1,  mid + 1, j, l, r);
+	}
 }
-
-
