@@ -45,6 +45,6 @@ void scc(){
 }
 
 void sccAddEdge(int x, int y){
-  adj[x].pub(y);
-  radj[y].pub(x);
+  	adj[x].pub(y);
+  	radj[y].pub(x);
 }
