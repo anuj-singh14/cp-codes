@@ -51,7 +51,7 @@ ll primsMST(ll source) //Finds the cost and makes the MST
 				s.erase({dist[it.fi], it.fi});
 				dist[it.fi] = it.se;
 				s.in({dist[it.fi], it.fi});
-				parent[it.fi] = x.se;
+				parent[it.fi] = u;
 			}
 		}
 	}
