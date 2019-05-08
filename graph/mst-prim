@@ -24,7 +24,6 @@ const ll N = 3e5 + 5;
 vpll adj[N], tree[N];
 vll parent(N, 0), dist(N, 1e10);
 vector<bool> vis(N, 0);
-vpll ans;
 
 ll primsMST(ll source) //Finds the cost and makes the MST
 {
@@ -41,7 +40,6 @@ ll primsMST(ll source) //Finds the cost and makes the MST
 		ll u = x.se;
 		ll v = parent[x.se];
 		ll w = x.fi;
-		if(v > 0)	ans.pub({v, u});
 		tree[u].pub({v, w});
 		tree[v].pub({u, w});
 		for(auto it : adj[x.se])
