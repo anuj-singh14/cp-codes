@@ -1,0 +1,53 @@
+//Printing lcs
+
+#include<bits/stdc++.h>
+using namespace std;
+#define ll long long
+#define vi vector<int>
+#define vll vector<ll>
+#define umap unordered_map
+#define uset unordered_set
+#define frw(i, a, b) for(int i = a; i < b; i++)
+#define bck(i, a, b) for(int i = a; i > b; i--)
+#define fi first
+#define se second
+#define pub push_back
+#define in insert
+#define all(a) a.begin(), a.end()
+#define rall(a) a.rbegin(), a.rend()
+#define sz(a) int(a.size())
+#define pii pair<int, int>
+#define pll pair<ll, ll>
+#define plll pair<ll, pll>
+#define vpll vector<pll>
+#define vpii vector<pii>
+
+const int N = 1e5 + 5;
+
+string a, b;
+vector<vi> dp;
+
+int rec(int n1, int n2){
+	if(n1 == 0 or n2 == 0)	return dp[n1][n2] = 0;
+	int &aux = dp[n1][n2];
+	if(aux != -1)	return aux;
+	aux = 0;
+	if(a[n1 - 1] == b[n2 - 1])	return aux = 1 + rec(n1 - 1, n2 - 1);
+	return aux = max(rec(n1 - 1, n2), rec(n1, n2 - 1));
+}
+
+int main(){
+	ios::sync_with_stdio(0);
+	cin >> a >> b;
+	dp.assign(sz(a) + 1, vi (sz(b) + 1, -1));
+	rec(sz(a), sz(b));
+	string ans;
+	int n1 = sz(a), n2 = sz(b);
+	while(n1 and n2){
+		if(a[n1 - 1] == b[n2 - 1])	ans += a[n1 - 1], n1--, n2--;	else
+		if(dp[n1 - 1][n2] > dp[n1][n2 - 1])	n1--;
+		else	n2--;
+	}
+	reverse(all(ans));
+	cout << ans;
+}
