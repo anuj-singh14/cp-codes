@@ -1,0 +1,26 @@
+struct DSU{
+    int connected;
+    int par[N], size[N];
+    
+    void init(int n){
+        frw(i, 1, n + 1){
+            par[i] = i;
+            size[i] = 1;
+        }
+        connected = n;
+    }
+    
+    int find(int x){
+        return par[x] = (par[x] == x) ? x : find(par[x]);
+    }
+    
+    void unite(int a, int b){
+        int r1 = find(a), r2 = find(b);
+        if(r1 == r2)    return;
+        connected--;
+        if(size[r1] > size[r2]) swap(r1, r2);
+        size[r2] += size[r1];
+        size[r1] = 0;
+        par[r1] = par[r2];
+    }
+};
