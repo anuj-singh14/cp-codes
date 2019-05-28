@@ -26,3 +26,11 @@ umap<ll,ll> fac(ll n){
     }
     return m ;
 }
+
+void pre()
+{
+    for ( int i = 1; i <= 1000000; i++ ) {
+        for ( int j = i; j <= 1000000; j += i ) cnt[j]++;
+    }
+    return;
+}
