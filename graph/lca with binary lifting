@@ -1,50 +1,52 @@
-//reference : https://cp-algorithms.com/graph/lca_binary_lifting.html
+const int N = 3e5 + 5;
+const int LG = 20; //log2(N) + 1
 
+int n, q;
+ll level[N], sub[N];
+int par[LG][N];
 vi adj[N];
-int n, l; 
-int timer;
-vector<int> tin, tout;
-vector<vector<int>> up;
 
-void dfs(int v, int p){
-    tin[v] = ++timer;
-    up[v][0] = p;
-    for (int i = 1; i <= l; ++i)
-        up[v][i] = up[up[v][i - 1]][i - 1];
-    for (int u : adj[v]) {
-        if (u != p)
-            dfs(u, v);
-    }
-    tout[v] = ++timer;
+
+void dfs0(int x, int p){
+	par[0][x] = p;
+	level[x] = level[p] + 1;
+	sub[x] = 1;
+	for(int i : adj[x]){
+		if(i == p)	continue;
+		dfs0(i, x);
+		sub[x] += sub[i];
+	}
 }
 
-bool is_ancestor(int u, int v){
-    return tin[u] <= tin[v] && tout[u] >= tout[v];
+void pre(){
+	frw(i, 1, LG){
+		frw(j, 1, n + 1){
+			if(par[i - 1][j]){
+				par[i][j] = par[i - 1][par[i - 1][j]];
+			}
+		}
+	}
 }
 
-int lca(int u, int v){
-    if (is_ancestor(u, v))
-        return u;
-    if (is_ancestor(v, u))
-        return v;
-    for (int i = l; i >= 0; --i) {
-        if (!is_ancestor(up[u][i], v))
-            u = up[u][i];
-    }
-    return up[u][0];
+int jump(int u, ll h){
+	bck(i, LG - 1, -1){
+		if(h & (1 << i)){
+			u = par[i][u];
+		}
+	}
+	return u;
 }
 
-void preprocess() {
-    tin.resize(n + 1);
-    tout.resize(n + 1);
-    timer = 0;
-    l = 12;
-    up.assign(n + 1, vector<int>(l + 1, -1));
-    dfs(1, 1);
-}
-
-void clear(){
-	tin.clear();
-	tout.clear();
-	frw(i, 0, N)	adj[i].clear();
+int LCA(int u, int v){
+	if(level[u] < level[v])	swap(u, v);
+	ll diff = level[u] - level[v];
+	u = jump(u, diff);
+	if(u == v)	return u;
+	bck(i, LG - 1, -1){
+		if(par[i][u] && par[i][u] != par[i][v]){
+			u = par[i][u];
+			v = par[i][v];
+		}
+	}
+	return par[0][u];
 }
