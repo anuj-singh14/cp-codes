@@ -1,0 +1,39 @@
+const int MOD = 1e9 + 7;
+
+int add(int a, int b){
+	a += b;
+	if(a >= MOD)	a -= MOD;
+	return a;
+}
+
+int sub(int a, int b){
+	return add(a, MOD - b);
+}
+
+int mult(int a, int b){
+	return 1ll * a * b % MOD;
+}
+
+int fpow(int x, int y){
+	int res = 1;
+	if(y < 0)	y += MOD - 1;	//only if MOD is prime
+	while(y > 0){
+		if(y & 1)	res = mult(res, x);
+		x = mult(x, x);
+		y >>= 1;
+	}
+	return res;
+}
+
+int inv(int a, int md = MOD) {
+  a %= md;
+  if(a < 0)	a += md;
+  int b = md, u = 0, v = 1;
+  while(a){
+    ll t = b / a;
+    b -= t * a; swap(a, b);
+    u -= t * v; swap(u, v);
+  }
+  if(u < 0)	u += md;
+  return u;
+}
