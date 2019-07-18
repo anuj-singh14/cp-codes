@@ -26,14 +26,14 @@ int fpow(int x, int y){
 }
 
 int inv(int a, int md = MOD) {
-  a %= md;
-  if(a < 0)	a += md;
-  int b = md, u = 0, v = 1;
-  while(a){
-    ll t = b / a;
-    b -= t * a; swap(a, b);
-    u -= t * v; swap(u, v);
-  }
-  if(u < 0)	u += md;
-  return u;
+	a %= md;
+	if(a < 0)	a += md;
+	int b = md, u = 0, v = 1;
+	while(a){
+		ll t = b / a;
+		b -= t * a; swap(a, b);
+		u -= t * v; swap(u, v);
+	}
+	if(u < 0)	u += md;
+	return u;
 }
