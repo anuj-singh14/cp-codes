@@ -30,7 +30,7 @@ int inv(int a, int md = MOD) {
 	if(a < 0)	a += md;
 	int b = md, u = 0, v = 1;
 	while(a){
-		ll t = b / a;
+		int t = b / a;
 		b -= t * a; swap(a, b);
 		u -= t * v; swap(u, v);
 	}
