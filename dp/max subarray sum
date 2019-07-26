@@ -1,0 +1,9 @@
+ll max_subarray_sum(vll a){
+	ll psum(0), res(-1e18), mn(0);
+	for(auto i : a){
+		psum += i;
+		res = max(res, psum - mn);
+		mn = min(mn, psum);
+	}
+	return res;
+}
