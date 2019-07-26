@@ -1,9 +1,21 @@
-ll max_subarray_sum(vll a){
+
+vll dp(N, -1), a(N);
+
+ll max_subarray_sum(vll a, int n){
 	ll psum(0), res(-1e18), mn(0);
-	for(auto i : a){
-		psum += i;
+	frw(i, 1, n + 1){
+		psum += a[i];
 		res = max(res, psum - mn);
 		mn = min(mn, psum);
 	}
 	return res;
+}
+
+//DP approach
+//dp[i] = maximum sum of subarray ending at index i
+ll rec(int n){
+	ll &aux = dp[n];
+	if(n == 0)	return aux = -1e15;
+	if(aux != -1)	return aux;
+	return aux = max(rec(n - 1) + a[n], a[n]);
 }
