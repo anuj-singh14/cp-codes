@@ -1,3 +1,4 @@
+const int N = 1e5 + 5;
 
 vll dp(N, -1), a(N);
 
