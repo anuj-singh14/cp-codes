@@ -1,0 +1,49 @@
+#define left root * 2
+#define right left + 1
+#define mid (s + e) / 2
+
+const int N = 2e5 + 5;
+
+ll tree[4 * N], lazy[4 * N], a[N];
+
+void update(int root){
+	tree[root] = min(tree[left] + lazy[left], tree[right] + lazy[right]);
+}
+
+void prop(int root){
+	lazy[left] += lazy[root];
+	lazy[right] += lazy[root];
+	lazy[root] = 0;
+}
+
+void build(int root, int s, int e){
+	if(s == e){
+		tree[root] = a[s];
+		return;
+	}
+	build(left, s, mid);
+	build(right, mid + 1, e);
+	update(root);
+}
+
+void range_update(int root, int s, int e, int l, int r, int val){
+	if(r < s || e < l)	return;
+	if(s >= l && r >= e){
+		lazy[root] += val;
+		return;
+	}
+	prop(root);
+	range_update(left, s, mid, l, r, val);
+	range_update(right, mid + 1, e, l, r, val);
+	update(root);
+}
+
+ll query(int root, int s, int e, int l, int r){
+	if(r < s || e < l)	return 1e15;
+	if(s >= l && r >= e)	return tree[root] + lazy[root];
+	prop(root);
+	ll x = query(left, s, mid, l, r);
+	ll y = query(right, mid + 1, e, l, r);
+	update(root);
+	return min(x, y);
+}
