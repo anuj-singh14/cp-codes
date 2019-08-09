@@ -6,7 +6,6 @@ ll level[N], sub[N];
 int par[LG][N];
 vi adj[N];
 
-
 void dfs0(int x, int p){
 	par[0][x] = p;
 	level[x] = level[p] + 1;
