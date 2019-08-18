@@ -1,18 +1,18 @@
 //linear sieve algo from https://cp-algorithms.com/algebra/prime-sieve-linear.html
 //time complexity : O(N)
-const ll N = 1e6 + 5 ;
-vll pr ;
-vll lp(N, 0) ;
+const int N = 1e6 + 5;
+
+vi pr, lp(N, 0) ;
 
 void precomp(){
-    lp[1] = 1 ;
     frw(i, 2, N){
         if(!lp[i]){
-            lp[i] = i ;
-            pr.pub(i) ;
+            lp[i] = i;
+            pr.pub(i);
         }
-        for(ll j = 0 ; j < sz(pr) and pr[j] <= lp[i] and i * pr[j] < N ; j++){
-            lp[i * pr[j]] = pr[j] ;
+        for(auto j : pr){
+        	if(j > lp[i] || i * j >= N)	break;
+            lp[i * j] = j;
         }
     }
 }
