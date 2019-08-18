@@ -17,6 +17,19 @@ void precomp(){
     }
 }
 
+//nlog(logn)
+void precomp(){
+	lp[1] = lp[0] = 0;
+	frw(i, 2, N){
+		if(lp[i])	continue;
+		lp[i] = i;
+		for(ll j = sq(i); j < N; j += i){
+			if(lp[j])	continue;
+			lp[j] = i;
+		}
+	}
+}
+
 //function to generate prime factorization of a number in O(logn)
 umap<ll,ll> fac(ll n){
     umap<ll,ll> m ;
