@@ -23,7 +23,7 @@ void precomp(){
 	frw(i, 2, N){
 		if(lp[i])	continue;
 		lp[i] = i;
-		for(ll j = sq(i); j < N; j += i){
+		for(ll j = 1ll * sq(i); j < 1ll * N; j += i){
 			if(lp[j])	continue;
 			lp[j] = i;
 		}
