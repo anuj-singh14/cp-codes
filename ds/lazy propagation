@@ -17,7 +17,7 @@ void prop(int root){
 	lazy[root] = 0;
 }
 
-//for range sum
+//for queries of type : add val on range [l, r]
 void prop(int root, int s, int e){
 	lazy[left] += lazy[root];
 	lazy[right] += lazy[root];
