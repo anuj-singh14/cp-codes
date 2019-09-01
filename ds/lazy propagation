@@ -20,9 +20,10 @@ void prop(int root){
 //for queries of type : add val on range [l, r]
 void prop(int root, int s, int e){
 	tree[root] += (e - s + 1) * lazy[root];
-	if(s == e)	return;
-	lazy[left] += lazy[root];
-	lazy[right] += lazy[root];
+	if(s != e){
+		lazy[left] += lazy[root];
+		lazy[right] += lazy[root];
+	}
 	lazy[root] = 0;
 }
 
