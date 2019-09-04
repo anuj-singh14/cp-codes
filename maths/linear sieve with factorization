@@ -4,7 +4,7 @@ const int N = 1e6 + 5;
 
 vi pr, lp(N, 0) ;
 
-void precomp(){
+void sieve(){
     frw(i, 2, N){
         if(!lp[i]){
             lp[i] = i;
@@ -18,7 +18,7 @@ void precomp(){
 }
 
 //nlog(logn)
-void precomp(){
+void sieve(){
 	lp[1] = lp[0] = 0;
 	frw(i, 2, N){
 		if(lp[i])	continue;
