@@ -22,7 +22,7 @@ using namespace std;
 #define in insert
 #define all(a) a.begin(), a.end()
 #define rall(a) a.rbegin(), a.rend()
-#define sz(a) int(a.size())
+#define sz(a) (int)(a.size())
 #define sq(a) ((a) * (a))
 
 #define trace(...) ZZ(#__VA_ARGS__, __VA_ARGS__)
@@ -39,4 +39,5 @@ void ZZ(const char* names, Arg1&& arg1, Args&&... args){
 
 signed main(){
 	tez
+	
 }
