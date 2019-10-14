@@ -7,55 +7,55 @@ const int N = 2e5 + 5;
 ll tree[4 * N], lazy[4 * N], a[N];
 
 void update(int root){
-	tree[root] = max(tree[left], tree[right]);
+    tree[root] = max(tree[left], tree[right]);
 }
 
 void prop(int root){
-	if(!lazy[root])	return;
-	lazy[left] = lazy[right] = lazy[root];
-	tree[root] = lazy[root];
-	lazy[root] = 0;
+    if(!lazy[root]) return;
+    lazy[left] = lazy[right] = lazy[root];
+    tree[root] = lazy[root];
+    lazy[root] = 0;
 }
 
 //for queries of type : add val on range [l, r]
 void prop(int root, int s, int e){
-	tree[root] += (e - s + 1) * lazy[root];
-	if(s != e){
-		lazy[left] += lazy[root];
-		lazy[right] += lazy[root];
-	}
-	lazy[root] = 0;
+    tree[root] += (e - s + 1) * lazy[root];
+    if(s != e){
+        lazy[left] += lazy[root];
+        lazy[right] += lazy[root];
+    }
+    lazy[root] = 0;
 }
 
 void build(int root, int s, int e){
-	if(s == e){
-		tree[root] = a[s];
-		return;
-	}
-	build(left, s, mid);
-	build(right, mid + 1, e);
-	update(root);
+    if(s == e){
+        tree[root] = a[s];
+        return;
+    }
+    build(left, s, mid);
+    build(right, mid + 1, e);
+    update(root);
 }
 
 void range_update(int root, int s, int e, int l, int r, int val){
-	prop(root);
-	if(r < s || e < l)	return;
-	if(s >= l && r >= e){
-		lazy[root] = val;
-		prop(root);
-		return;
-	}
-	range_update(left, s, mid, l, r, val);
-	range_update(right, mid + 1, e, l, r, val);
-	update(root);
+    prop(root);
+    if(r < s || e < l)  return;
+    if(s >= l && r >= e){
+        lazy[root] = val;
+        prop(root);
+        return;
+    }
+    range_update(left, s, mid, l, r, val);
+    range_update(right, mid + 1, e, l, r, val);
+    update(root);
 }
 
 ll query(int root, int s, int e, int l, int r){
-	prop(root);
-	if(r < s || e < l)	return -1e15;
-	if(s >= l && r >= e)	return tree[root];
-	ll x = query(left, s, mid, l, r);
-	ll y = query(right, mid + 1, e, l, r);
-	update(root);
-	return max(x, y);
+    prop(root);
+    if(r < s || e < l)  return -1e15;
+    if(s >= l && r >= e)    return tree[root];
+    ll x = query(left, s, mid, l, r);
+    ll y = query(right, mid + 1, e, l, r);
+    update(root);
+    return max(x, y);
 }
