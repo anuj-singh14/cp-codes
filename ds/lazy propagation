@@ -17,7 +17,7 @@ void prop(int root){
     lazy[root] = 0;
 }
 
-//for queries of type : add val on range [l, r]
+//for updates of type : add val on range [l, r]
 void prop(int root, int s, int e){
     tree[root] += (e - s + 1) * lazy[root];
     if(s != e){
