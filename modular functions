@@ -17,7 +17,7 @@ int mult(int a, int b, int m = MOD){
 
 int fpow(int x, int y, int m = MOD){
     int res = 1;
-    if(y < 0)   y += MOD - 1;   //only if MOD is prime
+    if(y < 0)   y += m - 1;   //only if m is prime
     while(y > 0){
         if(y & 1)   res = mult(res, x);
         x = mult(x, x);
