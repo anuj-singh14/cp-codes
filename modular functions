@@ -7,7 +7,7 @@ int add(int a, int b, int m = MOD){
 }
 
 int sub(int a, int b, int m = MOD){
-    return add(a, m - b);
+    return add(a, m - b, m);
 }
 
 int mult(int a, int b, int m = MOD){
@@ -19,8 +19,8 @@ int fpow(int x, int y, int m = MOD){
     int res = 1;
     if(y < 0)   y += m - 1;   //only if m is prime
     while(y > 0){
-        if(y & 1)   res = mult(res, x);
-        x = mult(x, x);
+        if(y & 1)   res = mult(res, x, m);
+        x = mult(x, x, m);
         y >>= 1;
     }
     return res;
