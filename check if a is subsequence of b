@@ -1,8 +1,9 @@
-bool subs(string a, string &b){	//checks if a is subsequence og b
-	int j = 0;
-	frw(i, 0, sz(b)){
-		if(a[j] == b[i])
-			j++;
-	}
-	return j == sz(a);
+bool subs(string a, string &b){ //checks if a is subsequence og b
+    int j = 0;
+    frw(i, 0, sz(b)){
+        if(a[j] == b[i])
+            j++;
+        if(j == sz(a))  break;
+    }
+    return j == sz(a);
 }
