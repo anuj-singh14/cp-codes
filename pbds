@@ -10,4 +10,8 @@ functions:
 1)insert()
 2)find_by_order(x) returns iterator to xth smallest element
 3)order_of_key(x) return no of elems less than x; 
+ 
+one more workaround for multiset
+store pairs s.t. second represents time of inserting (s.insert({a, t++});)
+to find no. of elements lesser than x => s.order_of_key({x, 0})
 */
