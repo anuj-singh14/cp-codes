@@ -1,4 +1,5 @@
 const int N = 20;
+vi dp(1 << N, 0);
 
 //handle base cases separately
 void sos(){
