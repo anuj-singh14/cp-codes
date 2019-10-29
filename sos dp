@@ -11,7 +11,7 @@ void sos(){
 
     //iterate over supersets
     frw(i, 0, N)   bck(mask, (1 << N) - 1, -1){
-        if(mask & (1 << i)) continue;
-        dp[mask] += dp[mask | (1 << i)];
+        if(mask & (1 << i) == 0)
+            dp[mask] += dp[mask | (1 << i)];
     }
 }
