@@ -1,0 +1,13 @@
+const int N = 1e6 + 5;
+
+vi phi(N);
+
+void calc(){
+    iota(phi.begin(), phi.end(), 0);
+    for(int i = 2; i < N; i++){
+        if(phi[i] != i) continue;
+        phi[i] = i - 1;
+        for(int j = 2 * i; j < N; j += i)
+            phi[j] = (phi[j] / i) * (i - 1);
+    }
+}
