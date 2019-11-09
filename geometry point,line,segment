@@ -37,6 +37,9 @@ class point
     {
         return point(x-a.x,y-a.y);
     }
+    T dist(const point &a){
+        return sqrt(sq(x - a.x) + sq(y - a.y));
+    }
     T dot(const point &a)
     {
         return x*a.x + y*a.y;
