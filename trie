@@ -5,7 +5,7 @@ typedef struct data{
     data *nxt[2];
     int cnt = 0;
     data(){
-        frw(i, 0, 2)    cnt[i] = NULL;
+        frw(i, 0, 2)    nxt[i] = NULL;
     }
 }trie;
 
