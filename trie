@@ -1,70 +1,61 @@
-//attribution : https://github.com/Ashishgup1/Competitive-Coding/blob/master/Trie.cpp
-
 //call prep() in main() before usage
 int MX = 30;    //number of bits of max value to be inserted
 
-typedef struct data
-{
-    data* bit[2];
+typedef struct data{
+    data *nxt[2];
     int cnt = 0;
+    data(){
+        frw(i, 0, 2)    cnt[i] = NULL;
+    }
 }trie;
 
-trie* head;
+trie *head;
 
-void insert(int x)
-{
-    trie* cur = head;
-    for(int i=30;i>=0;i--)
-    {
-        int b = (x>>i) & 1;
-        if(!cur->bit[b])
-            cur->bit[b] = new trie();
-        cur = cur->bit[b];
-        cur->cnt++;
+void insert(int n){
+    trie *curr = head;
+    bck(i, MX, -1){
+        int ind = n >> i & 1;
+        if(!curr -> nxt[ind])
+            curr -> nxt[ind] = new trie();
+        curr = curr -> nxt[ind];
+        curr -> cnt++;
+    }    
+}
+
+void remove(int n){
+    trie *curr = head;
+    bck(i, MX, -1){
+        int ind = n >> i & 1;
+        curr = curr -> nxt[ind];
+        curr -> cnt--;
     }
 }
 
-void remove(int x)
-{
-    trie* cur = head;
-    for(int i=30;i>=0;i--)
-    {
-        int b = (x>>i) & 1;
-        cur = cur->bit[b];
-        cur->cnt--;
-    }
-}
-
-int maxxor(int x)
-{
-    trie* cur = head;
+int maxxor(int n){
+    trie *curr = head;
     int ans = 0;
-    for(int i=30;i>=0;i--)
-    {
-        int b = (x>>i)&1;
-        if(cur->bit[!b] && cur->bit[!b]->cnt>0)
-        {
-            ans += (1LL<<i);
-            cur = cur->bit[!b];
+    bck(i, MX, -1){
+        int ind = n >> i & 1;
+        if(curr -> nxt[!ind] && curr -> nxt[!ind] -> cnt){
+            ans |= 1 << i;
+            curr = curr -> nxt[!ind];
         }
         else
-            cur = cur->bit[b];
+            curr = curr -> nxt[ind];
     }
     return ans;
 }
 
-int minxor(int x)
-{
-    trie* cur = head;
+int minxor(int n){
+    trie *curr = head;
     int ans = 0;
-    for(int i=30;i>=0;i--)
-    {
-        int b = (x>>i)&1;
-        if(cur -> bit[b] != NULL && cur -> bit[b] -> cnt > 0)
-            cur = cur -> bit[b];
+    bck(i, MX, -1){
+        int ind = n >> i & 1;
+        if(curr -> nxt[ind] && curr -> nxt[ind] -> cnt)
+            curr = curr -> nxt[ind];
         else{
             ans |= 1 << i;
-            cur = cur -> bit[!b];
+            curr = curr -> nxt[!ind];
         }
     }
     return ans;
@@ -72,5 +63,54 @@ int minxor(int x)
 
 void prep(){
     head = new trie();
-    insert(0);
+    insert("", 0);
 }
+
+
+//trie for strings
+typedef struct data{
+    data *nxt[26];
+    int wt = 0, cnt = 0;
+    data(){
+        frw(i, 0, 26)   nxt[i] = NULL;
+    }
+}trie;
+
+trie *head;
+
+void insert(string s, int wt){
+    trie *curr = head;
+    for(auto i : s){
+        int ind = i - 'a';
+        if(!curr -> nxt[ind])
+            curr -> nxt[ind] = new trie();
+        curr = curr -> nxt[ind];
+        curr -> wt = max(curr -> wt, wt);
+        curr -> cnt++;
+    }
+}
+
+void remove(string s){
+    trie *curr = head;
+    for(auto i : s){
+        int ind = i - 'a';
+        curr = curr -> nxt[ind];
+        curr -> cnt--;
+    }
+}
+
+int get(string s){
+    trie *curr = head;
+    for(auto i : s){
+        int ind = i - 'a';
+        if(!curr -> nxt[ind])    return -1;
+        curr = curr -> nxt[ind];
+    }
+    return curr -> wt;
+}
+
+void prep(){
+    head = new trie();
+    insert("", 0);
+}
+
