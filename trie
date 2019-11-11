@@ -63,7 +63,7 @@ int minxor(int n){
 
 void prep(){
     head = new trie();
-    insert("", 0);
+    insert(0);
 }
 
 
