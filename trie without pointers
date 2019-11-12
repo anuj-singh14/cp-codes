@@ -1,0 +1,32 @@
+int MX = 30;    //number of bits of max value to be inserted
+const int N = 2e5 + 5;  //max no. of nodes
+
+int trie[N][2], tot = 1;
+
+void insert(int n){
+    int curr = 0;
+    bck(i, MX, -1){
+        int ind = (n >> i) & 1;
+        if(trie[curr][ind] == -1)
+            trie[curr][ind] = tot++;
+        curr = trie[curr][ind];
+    }    
+}
+
+int maxxor(int n){
+    int ans = 0, curr = 0;
+    bck(i, MX, -1){
+        int ind = (n >> i) & 1;
+        if(trie[curr][!ind] != -1){
+            ans |= 1 << i;
+            curr = trie[curr][!ind];
+        }
+        else
+            curr = trie[curr][ind];
+    }
+    return ans;
+}
+
+void prep(){
+    memset(trie, -1, sizeof trie):
+}
