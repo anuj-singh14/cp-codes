@@ -5,9 +5,9 @@
 const int N = 2e5 + 5;
 
 struct node{
-	int sum = 0;	//store data appropriately
+    int sum = 0;    //store data appropriately
     node(int _s = 0){
-    	sum = _s;
+        sum = _s;
     }
 };
 
