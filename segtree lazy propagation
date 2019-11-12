@@ -1,4 +1,4 @@
-#define left root * 2
+define left root * 2
 #define right left + 1
 #define mid (s + e) / 2
 
@@ -55,5 +55,8 @@ node query(int root, int s, int e, int l, int r){
     prop(root, s, e);
     if(r < s || e < l)  return node();
     if(s >= l && r >= e)    return tree[root];
-    return combine(query(left, s, mid, l, r), query(right, mid + 1, e, l, r));
+    node a = query(left, s, mid, l, r);
+    node b = query(right, mid + 1, e, l, r);
+    return combine(a, b);
+    tree[root] = combine(tree[left], tree[right]);
 }
