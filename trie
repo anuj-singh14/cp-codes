@@ -14,7 +14,7 @@ trie *head;
 void insert(int n){
     trie *curr = head;
     bck(i, MX, -1){
-        int ind = n >> i & 1;
+        int ind = (n >> i) & 1;
         if(!curr -> nxt[ind])
             curr -> nxt[ind] = new trie();
         curr = curr -> nxt[ind];
@@ -25,7 +25,7 @@ void insert(int n){
 void remove(int n){
     trie *curr = head;
     bck(i, MX, -1){
-        int ind = n >> i & 1;
+        int ind = (n >> i) & 1;
         curr = curr -> nxt[ind];
         curr -> cnt--;
     }
@@ -35,7 +35,7 @@ int maxxor(int n){
     trie *curr = head;
     int ans = 0;
     bck(i, MX, -1){
-        int ind = n >> i & 1;
+        int ind = (n >> i) & 1;
         if(curr -> nxt[!ind] && curr -> nxt[!ind] -> cnt){
             ans |= 1 << i;
             curr = curr -> nxt[!ind];
@@ -50,7 +50,7 @@ int minxor(int n){
     trie *curr = head;
     int ans = 0;
     bck(i, MX, -1){
-        int ind = n >> i & 1;
+        int ind = (n >> i) & 1;
         if(curr -> nxt[ind] && curr -> nxt[ind] -> cnt)
             curr = curr -> nxt[ind];
         else{
