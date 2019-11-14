@@ -28,5 +28,6 @@ int maxxor(int n){
 }
 
 void prep(){
+    tot = 1;
     memset(trie, -1, sizeof trie):
 }
