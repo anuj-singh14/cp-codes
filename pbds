@@ -2,7 +2,7 @@
 #include <ext/pb_ds/tree_policy.hpp> // Including tree_order_statistics_node_update
  
 using namespace __gnu_pbds;
-typedef tree<int, null_type, less_equal<int>, rb_tree_tag, tree_order_statistics_node_update> oset;   
+typedef tree<int, null_type, less<int>, rb_tree_tag, tree_order_statistics_node_update> oset;   
 //change less<int> to less_equal<int> to make it work like multiset
 
 /*
