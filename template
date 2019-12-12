@@ -47,6 +47,8 @@ void ZZ(Arg1&& arg1, Args&&... args){
     ZZ(args...);
 }
 
+const int zero = 0;
+
 signed main(){
     tez
     
