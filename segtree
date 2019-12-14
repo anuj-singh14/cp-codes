@@ -1,0 +1,48 @@
+#define left root * 2
+#define right left + 1
+#define mid (s + e) / 2
+
+const int N = 2e5 + 5;
+
+struct node{
+    int sum = 0;    //store data appropriately
+    node(int _s = 0){
+        sum = _s;
+    }
+};
+
+node tree[4 * N]; 
+int a[N];
+
+node combine(node a, node b){
+    return node(a.sum + b.sum);
+}
+
+void build(int root, int s, int e){
+    if(s == e){
+        tree[root] = node(a[s]);
+        return;
+    }
+    build(left, s, mid);
+    build(right, mid + 1, e);
+    tree[root] = combine(tree[left], tree[right]);
+}
+
+void update(int root, int s, int e, int id, int val){
+    if(id < s || id > e)    return;
+    if(s == e){
+        tree[root] = node(val);
+        return;
+    }
+    if(id <= mid)   update(left, s, mid, id, val);
+    else            update(right, mid + 1, e, id, val);
+    tree[root] = combine(tree[left], tree[right]);
+}
+
+node query(int root, int s, int e, int l, int r){
+    if(r < s || e < l)  return node();
+    if(s >= l && r >= e)    return tree[root];
+    node a = query(left, s, mid, l, r);
+    node b = query(right, mid + 1, e, l, r);
+    return combine(a, b);
+}
