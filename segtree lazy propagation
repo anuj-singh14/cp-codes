@@ -1,4 +1,4 @@
-define left root * 2
+#define left root * 2
 #define right left + 1
 #define mid (s + e) / 2
 
