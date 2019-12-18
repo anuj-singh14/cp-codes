@@ -1,28 +1,13 @@
-const int N = 2e5 + 5;
+asdfasdfasdfasd
 
-vi par(N), siz(N, 0);
+asd
+f
+asdf
+asdf
+a
+sdf
 
-void init(int n){
-	frw(i, 1, n + 1){   
-		par[i] = i;
-		siz[i] = 1;
-	}
-}
-
-int find(int x){
-	return par[x] = (par[x] == x) ? x : find(par[x]);
-}
-
-bool same(int x, int y){
-	return find(x) == find(y);
-}
-
-void merge(int x, int y){
-	x = find(x);
-	y = find(y);
-	if(x == y)  return;
-	if(siz[x] < siz[y])   swap(x, y);
-	par[y] = x;
-	siz[x] += siz[y];
-	siz[y] = 0;
-}
+asdf
+asdf
+		sdfsdfsdf
+	sdfsdf
