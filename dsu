@@ -13,6 +13,10 @@ int find(int x){
     return par[x] = (par[x] == x) ? x : find(par[x]);
 }
 
+bool same(int x, int y){
+	return find(x) == find(y);
+}
+
 void merge(int x, int y){
     x = find(x);
     y = find(y);
