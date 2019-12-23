@@ -23,6 +23,6 @@ void merge(int x, int y){
     if(x == y)  return;
     if(siz[x] < siz[y])   swap(x, y);
     par[y] = x;
-    siz[x] += y;
+    siz[x] += siz[y];
     siz[y] = 0;
 }
