@@ -1,12 +1,11 @@
 const int N = 2e5 + 5;
 
-vi par(N), adj[N];
+vi par(N), siz(N);
 
 void init(int n){
     frw(i, 1, n + 1){   
         par[i] = i;
-        adj[i].clear();
-        adj[i].pub(i);
+        siz[i] = 1;
     }
 }
 
@@ -22,8 +21,8 @@ void merge(int x, int y){
     x = find(x);
     y = find(y);
     if(x == y)  return;
-    if(sz(adj[x]) < sz(adj[y]))   swap(x, y);
+    if(siz[x] < siz[y])   swap(x, y);
     par[y] = x;
-    for(auto i : adj[y])    adj[x].pub(i);
-    adj[y].clear();
+    siz[x] += y;
+    siz[y] = 0;
 }
