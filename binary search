@@ -18,10 +18,10 @@ int ub(vi &a, int lo, int hi, int key){
         int mid = (lo + hi) / 2;
         if(a[mid] > key){
             ans = mid;
-            hi = mid + 1;
+            hi = mid - 1;
         }
         else
-            lo = mid - 1;
+            lo = mid + 1;
     }
     return ans;
 }
