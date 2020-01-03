@@ -1,9 +1,8 @@
 const int MOD = 1e9 + 7;
 
 int add(int a, int b, int m = MOD){
-    a += b;
-    if(a >= m)    a -= m;
-    return a;
+    a %= m, b %= m;
+    return (a + b) % m;
 }
 
 int sub(int a, int b, int m = MOD){
