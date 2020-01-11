@@ -1,62 +1,85 @@
-#define left root * 2
-#define right left + 1
-#define mid (s + e) / 2
-
 const int N = 2e5 + 5;
 
+vi a(N);
+
 struct node{
-    int sum = 0;    //store data appropriately
-    node(int _s = 0){
-        sum = _s;
+    int mn;    //store data appropriately
+    node(int m = 1e15){
+        mn = m;
     }
 };
 
-node tree[4 * N]; 
-int a[N], lazy[4 * N];
+struct segtree{
+    #define left root * 2
+    #define right left + 1
+    #define mid (s + e) / 2
 
-node combine(node a, node b){
-    return node(a.sum + b.sum);
-}
+    int N;
+    vector<node> tree;
+    vector<int> lazy;
 
-//for updates of type : add val on range [l, r]
-void prop(int root, int s, int e){
-    tree[root].sum += (e - s + 1) * lazy[root];
-    if(s != e){
-        lazy[left] += lazy[root];
-        lazy[right] += lazy[root];
+    segtree(int n = 1e5){
+        N = n;
+        n += 5;
+        tree.resize(4 * n);
+        lazy.resize(4 * n, 0);
     }
-    lazy[root] = 0;
-}
 
-void build(int root, int s, int e){
-    if(s == e){
-        tree[root] = node(a[s]);
-        return;
+    node combine(node a, node b){
+        return node(min(a.mn, b.mn));
     }
-    build(left, s, mid);
-    build(right, mid + 1, e);
-    tree[root] = combine(tree[left], tree[right]);
-}
 
-void range_update(int root, int s, int e, int l, int r, int val){
-    prop(root, s, e);
-    if(r < s || e < l)  return;
-    if(s >= l && r >= e){
-        lazy[root] += val;
+    void prop(int root, int s, int e){
+        tree[root].mn += lazy[root];
+        if(s != e){
+            lazy[left] += lazy[root];
+            lazy[right] += lazy[root];
+        }
+        lazy[root] = 0;
+    }
+
+    void build(int root, int s, int e){
+        if(s == e){
+            tree[root] = node(a[s]);
+            return;
+        }
+        build(left, s, mid);
+        build(right, mid + 1, e);
+        tree[root] = combine(tree[left], tree[right]);
+    }
+
+    void range_update(int root, int s, int e, int l, int r, int val){
         prop(root, s, e);
-        return;
+        if(r < s || e < l)  return;
+        if(s >= l && r >= e){
+            lazy[root] += val;
+            prop(root, s, e);
+            return;
+        }
+        range_update(left, s, mid, l, r, val);
+        range_update(right, mid + 1, e, l, r, val);
+        tree[root] = combine(tree[left], tree[right]);
     }
-    range_update(left, s, mid, l, r, val);
-    range_update(right, mid + 1, e, l, r, val);
-    tree[root] = combine(tree[left], tree[right]);
-}
 
-node query(int root, int s, int e, int l, int r){
-    prop(root, s, e);
-    if(r < s || e < l)  return node();
-    if(s >= l && r >= e)    return tree[root];
-    node a = query(left, s, mid, l, r);
-    node b = query(right, mid + 1, e, l, r);
-    return combine(a, b);
-    tree[root] = combine(tree[left], tree[right]);
-}
+    node query(int root, int s, int e, int l, int r){
+        prop(root, s, e);
+        if(r < s || e < l)      return node();
+        if(s >= l && r >= e)    return tree[root];
+        node a = query(left, s, mid, l, r);
+        node b = query(right, mid + 1, e, l, r);
+        return combine(a, b);
+        tree[root] = combine(tree[left], tree[right]);
+    }
+
+    void build(){
+        build(1, 1, N);
+    }
+
+    void update(int l, int r, int val){
+        range_update(1, 1, N, l, r, val);
+    }
+
+    node query(int l, int r){
+        return query(1, 1, N, l, r);
+    }
+};
