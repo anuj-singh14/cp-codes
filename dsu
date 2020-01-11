@@ -1,28 +1,32 @@
-const int N = 2e5 + 5;
+struct dsu{
+    int connected;
+    vi par, siz;
 
-vi par(N), siz(N);
-
-void init(int n){
-    frw(i, 1, n + 1){   
-        par[i] = i;
-        siz[i] = 1;
+    dsu(int n){
+        connected = n;
+        par.resize(n + 1);
+        siz.resize(n + 1);
+        frw(i, 1, n + 1){   
+            par[i] = i;
+            siz[i] = 1;
+        }
     }
-}
 
-int find(int x){
-    return par[x] = (par[x] == x) ? x : find(par[x]);
-}
+    int find(int x){
+        return par[x] = (par[x] == x) ? x : find(par[x]);
+    }
 
-bool same(int x, int y){
-    return find(x) == find(y);
-}
+    bool same(int x, int y){
+        return find(x) == find(y);
+    }
 
-void merge(int x, int y){
-    x = find(x);
-    y = find(y);
-    if(x == y)  return;
-    if(siz[x] < siz[y])   swap(x, y);
-    par[y] = x;
-    siz[x] += siz[y];
-    siz[y] = 0;
-}
+    void merge(int x, int y){
+        x = find(x);
+        y = find(y);
+        if(x == y)  return;
+        if(siz[x] < siz[y])   swap(x, y);
+        par[y] = x;
+        siz[x] += siz[y];
+        siz[y] = 0;
+    }
+};
