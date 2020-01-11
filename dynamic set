@@ -4,56 +4,56 @@ Functions:
 inc(x) : increase occurence of x by 1
 dec(x) : decrease occurence of x by 1
 most_freqent() : return most frequent element, if multiple then 
-				 least among them
+                 least among them
 least_frequent() : return least freqent element, if multiple then
-				   greatest among them
+                   greatest among them
 */
 
 struct comp{
-	bool operator() (pii a, pii b){
-		if(a.fi == b.fi)	return a.se > b.se;
-		return a.fi < b.fi;
-	}
+    bool operator() (pii a, pii b){
+        if(a.fi == b.fi)    return a.se > b.se;
+        return a.fi < b.fi;
+    }
 };
 
 struct dset{
-	map<int, int> m;
-	set<pii, comp> s1, s2;
+    map<int, int> m;
+    set<pii, comp> s1, s2;
 
-	void inc(int x){
-		if(m.count(x)){
-			int fr = m[x];
-			auto k1 = s1.find({x, fr});	s1.erase(k1);
-			auto k2 = s2.find({fr, x});	s2.erase(k2);
-			++fr;
-			s1.in({x, fr});
-			s2.in({fr, x});
-		}
-		else{
-			s1.in({x, 1});
-			s2.in({1, x});
-		}
-		m[x]++;
-	}
+    void inc(int x){
+        if(m.count(x)){
+            int fr = m[x];
+            auto k1 = s1.find({x, fr}); s1.erase(k1);
+            auto k2 = s2.find({fr, x}); s2.erase(k2);
+            ++fr;
+            s1.in({x, fr});
+            s2.in({fr, x});
+        }
+        else{
+            s1.in({x, 1});
+            s2.in({1, x});
+        }
+        m[x]++;
+    }
 
-	void dec(int x){
-		if(!m.count(x))	return;
-		int fr = m[x];
-		auto k1 = s1.find({x, fr});	s1.erase(k1);
-		auto k2 = s2.find({fr, x});	s2.erase(k2);
-		--fr;
-		if(fr == 0)	return;
-		s1.in({x, fr});
-		s2.in({fr, x});
-	}
+    void dec(int x){
+        if(!m.count(x)) return;
+        int fr = m[x];
+        auto k1 = s1.find({x, fr}); s1.erase(k1);
+        auto k2 = s2.find({fr, x}); s2.erase(k2);
+        --fr;
+        if(fr == 0) return;
+        s1.in({x, fr});
+        s2.in({fr, x});
+    }
 
-	int most_freqent(){
-		if(s1.empty())	return -1;
-		return (*s2.rbegin()).se;
-	}
+    int most_freqent(){
+        if(s1.empty())  return -1;
+        return (*s2.rbegin()).se;
+    }
 
-	int least_frequent(){
-		if(s1.empty())	return -1;
-		return (*s2.begin()).se;
-	}
+    int least_frequent(){
+        if(s1.empty())  return -1;
+        return (*s2.begin()).se;
+    }
 };
