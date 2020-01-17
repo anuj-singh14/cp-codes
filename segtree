@@ -55,7 +55,11 @@ struct segtree{
         node b = query(right, mid + 1, e, l, r);
         return combine(a, b);
     }
-
+    
+    void build(){
+        build(1, 1, N);
+    }
+    
     void update(int id, int val){
         update(1, 1, N, id, val);
     }
