@@ -67,8 +67,8 @@ struct segtree{
         if(s >= l && r >= e)    return tree[root];
         node a = query(left, s, mid, l, r);
         node b = query(right, mid + 1, e, l, r);
-        return combine(a, b);
         tree[root] = combine(tree[left], tree[right]);
+        return combine(a, b);
     }
 
     void build(){
