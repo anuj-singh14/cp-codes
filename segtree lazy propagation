@@ -82,4 +82,7 @@ struct segtree{
     node query(int l, int r){
         return query(1, 1, N, l, r);
     }
+    #undef left
+    #undef right
+    #undef mid
 };
