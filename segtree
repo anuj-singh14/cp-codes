@@ -3,7 +3,7 @@ const int N = 2e5 + 5;
 vi a(N, 0);
 
 struct node{
-    int sum = 0;    //store data appropriately
+    int sum;    //store data appropriately
     node(int _s = 0){
         sum = _s;
     }
@@ -67,4 +67,7 @@ struct segtree{
     node query(int l, int r){
         return query(1, 1, N, l, r);
     }
+    #undef left
+    #undef right
+    #undef mid
 };
