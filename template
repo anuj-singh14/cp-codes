@@ -21,7 +21,7 @@ using namespace std;
 #define all(a) a.begin(), a.end()
 #define rall(a) a.rbegin(), a.rend()
 #define sz(a) (int)(a.size())
-#define sq(a) ((a) * (a))
+#define sq(a) ((a) * (a))				
 
 #define trace(...) ZZ(#__VA_ARGS__, __VA_ARGS__)
 template<typename Arg1> 
@@ -35,19 +35,16 @@ void ZZ(const char* names, Arg1&& arg1, Args&&... args){
     ZZ(comma, args...);
 }
 
-//console o/p without variable names
-#define trace1(...) ZZZ(__VA_ARGS__)
-template<typename Arg1>
-void ZZZ(Arg1&& arg1){
-    cerr << arg1 << endl;
-}
-template<typename Arg1, typename... Args>
-void ZZZ(Arg1&& arg1, Args&&... args){
-    cerr << arg1 << ' ';
-    ZZZ(args...);
-}
+clock_t time_p = clock();
+
 
 signed main(){
     tez
-    
+    // #ifndef ONLINE_JUDGE
+    //     freopen("input.txt","r",stdin);
+    //     freopen("output.txt","w",stdout);
+    // #endif
+
+
+    cerr << "\nTime Taken : " << (ld)(clock() - time_p) / CLOCKS_PER_SEC;
 }
