@@ -35,7 +35,7 @@ void ZZ(const char* names, Arg1&& arg1, Args&&... args){
     ZZ(comma, args...);
 }
 
-clock_t time_p = clock();
+clock_t tim = clock();
 
 
 signed main(){
@@ -46,5 +46,6 @@ signed main(){
     // #endif
 
 
-    cerr << "\nTime Taken : " << (ld)(clock() - time_p) / CLOCKS_PER_SEC;
+
+    cerr << "\nTime Taken : " << (ld)(clock() - tim) / CLOCKS_PER_SEC;
 }
