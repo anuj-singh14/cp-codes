@@ -1,4 +1,4 @@
-//comment #define int long long before usage!!
+#undef int
 #include <ext/pb_ds/assoc_container.hpp> // Common file
 #include <ext/pb_ds/tree_policy.hpp> // Including tree_order_statistics_node_update
  
@@ -18,3 +18,4 @@ to find no. of elements lesser than x => s.order_of_key({x, 0})
 
 NOTE: Don't use "tree" as a variable anywhere while using oset!!!
 */
+#define int long long
