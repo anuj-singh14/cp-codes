@@ -24,6 +24,7 @@ struct dsu{
         x = find(x);
         y = find(y);
         if(x == y)  return;
+        connected--;
         if(siz[x] < siz[y])   swap(x, y);
         par[y] = x;
         siz[x] += siz[y];
