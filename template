@@ -1,4 +1,4 @@
-#include<bits/stdc++.h>
+#include <bits/stdc++.h>
 using namespace std;
 #define ll long long
 #define int long long
@@ -11,7 +11,7 @@ using namespace std;
 #define frw(i, a, b) for(int i = (a); i < (b); i++)
 #define bck(i, a, b) for(int i = (a); i > (b); i--)
 #define T() int testcases; cin >> testcases; frw(TC, 1, testcases + 1)
-#define tez ios::sync_with_stdio(0); cin.tie(0); cout.tie(0);
+#define tez ios::sync_with_stdio(false); cin.tie(nullptr); cout.tie(nullptr);
 #define endl "\n"
 #define fi first
 #define se second
@@ -37,11 +37,5 @@ void ZZ(const char* names, Arg1&& arg1, Args&&... args){
 
 signed main(){
     tez
-    // #ifndef ONLINE_JUDGE
-    //     freopen("input.txt","r",stdin);
-    //     freopen("output.txt","w",stdout);
-    // #endif
-
-
-
+    
 }
