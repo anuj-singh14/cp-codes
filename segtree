@@ -1,6 +1,4 @@
-const int N = 2e5 + 5;
-
-vector<int> a(N, 0);
+vector<int> a;
 
 struct node{
     int sum;    //store data appropriately
