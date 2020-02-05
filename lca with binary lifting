@@ -2,9 +2,8 @@ const int N = 1e5 + 5;
 const int LG = 20; //log2(N) + 1
 
 int n;
-ll level[N], sub[N];
-int par[LG][N];
-vi adj[N];
+vector<int> adj[N], level(N, 0), sub(N, 0);
+vector<vector<int>> par(LG, vector<int> (N, 0));
 
 void dfs(int x, int p){
     par[0][x] = p;
@@ -18,17 +17,16 @@ void dfs(int x, int p){
 }
 
 void pre(){
-    frw(i, 1, LG){
-        frw(j, 1, n + 1){
-            if(par[i - 1][j]){
-                par[i][j] = par[i - 1][par[i - 1][j]];
-            }
+    for(int i = 1; i < LG; i++){
+        for(int j = 1; j <= n; j++){
+            if(!par[i - 1][j])  continue;
+            par[i][j] = par[i - 1][par[i - 1][j]];
         }
     }
 }
 
-int jump(int u, ll h){
-    bck(i, LG - 1, -1){
+int jump(int u, int h){
+    for(int i = LG - 1; i >= 0; i--){
         if(h & (1 << i)){
             u = par[i][u];
         }
@@ -38,10 +36,9 @@ int jump(int u, ll h){
 
 int LCA(int u, int v){
     if(level[u] < level[v]) swap(u, v);
-    ll diff = level[u] - level[v];
-    u = jump(u, diff);
+    u = jump(u, level[u] - level[v]);
     if(u == v)  return u;
-    bck(i, LG - 1, -1){
+    for(int i = LG - 1; i >= 0; i--){
         if(par[i][u] && par[i][u] != par[i][v]){
             u = par[i][u];
             v = par[i][v];
