@@ -1,12 +1,12 @@
 struct dsu{
     int connected;
-    vi par, siz;
+    vector<int> par, siz;
 
     dsu(int n){
         connected = n;
         par.resize(n + 1);
         siz.resize(n + 1);
-        frw(i, 1, n + 1){   
+        for(int i = 1; i <= n; i++){   
             par[i] = i;
             siz[i] = 1;
         }
