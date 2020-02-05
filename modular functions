@@ -38,11 +38,11 @@ int inv(int a, int md = MOD){
     return u;
 }
 
-const int N = 1e5 + 5;
+vector<int> fac, ifac;
 
-vector<int> fac(N, 1), ifac(N, 1);
-
-void precomp(){
+void precomp(int N = 1e5 + 5){
+    fac.resize(N, 1);
+    ifac.resize(N, 1);
     for(int i = 1; i < N; i++)    fac[i] = mult(fac[i - 1], i);
     ifac[N - 1] = inv(fac[N - 1]);
     for(int i = N - 2; i > 0; i--)    ifac[i] = mult(ifac[i + 1], i + 1);
