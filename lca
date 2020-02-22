@@ -35,7 +35,7 @@ struct lca_tree{
     }
 
     void init(int root = 1){
-        dfs(1, 0);
+        dfs(root, 0);
         pre();
     }
 
