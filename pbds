@@ -1,18 +1,22 @@
+#undef int
+#undef endl
 #include <ext/pb_ds/assoc_container.hpp>
 #include <ext/pb_ds/tree_policy.hpp>
 using namespace __gnu_pbds;
-template<class T> using oset=tree<T, null_type, less<T>, rb_tree_tag, tree_order_statistics_node_update>;
-//change less<int> to less_equal<int> to make it work like multiset
+template<typename T> using oset = tree<T, null_type, less<T>, rb_tree_tag, tree_order_statistics_node_update>;
 
 /*
 functions:
 1)insert()
 2)find_by_order(x) returns iterator to xth smallest element
 3)order_of_key(x) return no of elems less than x; 
- 
+
+change less<T> to less_equal<T> to make it work like multiset 
 one more workaround for multiset
 store pairs s.t. second represents time of inserting (s.insert({a, t++});)
 to find no. of elements lesser than x => s.order_of_key({x, 0})
 
 NOTE: Don't use "tree" as a variable anywhere while using oset!!!
 */
+#define int ll
+#define endl '\n'
