@@ -1,0 +1,32 @@
+//use only for rmq with no updates
+struct sparse{
+    #define log asdioasdoajkds
+
+    int N, K;
+    vector<int> log;
+    vector<vector<int>> st;
+
+    //1-based indexing
+    sparse(int n, vector<int> &a){
+        N = n + 5;
+        K = log2(N) + 1;
+        a.resize(N);
+        log.resize(N);
+        st.resize(N, vector<int> (K, 1e15));
+        log[1] = 0;
+        for(int i = 2; i < N; i++)
+            log[i] = log[i / 2] + 1;
+        for(int i = 1; i <= n; i++) st[i][0] = a[i];
+        for(int j = 1; j <= K; j++){
+            for(int i = 1; i + (1 << j) <= n + 1; i++){
+                st[i][j] = min(st[i][j - 1], st[i + (1 << (j - 1))][j - 1]);
+            }
+        }
+    }
+
+    int query(int l, int r){
+        int j = log[r - l + 1];
+        return min(st[l][j], st[r - (1 << j) + 1][j]);
+    }
+    #undef log
+};
