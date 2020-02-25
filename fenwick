@@ -3,11 +3,14 @@ struct fenwick{
     vector<int> Bit;
 
     fenwick(int n = 1e5){
+        init(n);
+    }
+
+    void init(int n){
         N = n;
         n += 5;
         Bit.resize(n, 0);
     }
-
     void update(int id, int val){
         while(id <= N){
             Bit[id] += val;
