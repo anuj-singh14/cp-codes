@@ -18,6 +18,10 @@ struct segtree{
     vector<bool> todo;
 
     segtree(int n = 1e5){
+        init(n);
+    }
+
+    void init(int n){
         N = n;
         n += 5;
         tree.resize(4 * n);
