@@ -3,6 +3,10 @@ struct dsu{
     vector<int> par, siz;
 
     dsu(int n){
+        init(n);
+    }
+
+    void init(int n){
         connected = n;
         par.resize(n + 1);
         siz.resize(n + 1);
