@@ -11,6 +11,7 @@ struct fenwick{
         n += 5;
         Bit.resize(n, 0);
     }
+    
     void update(int id, int val){
         while(id <= N){
             Bit[id] += val;
