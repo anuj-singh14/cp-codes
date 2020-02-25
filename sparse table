@@ -7,12 +7,15 @@ struct sparse{
     vector<vector<int>> st;
 
     //1-based indexing
-    sparse(int n, vector<int> &a){
+    sparse(int n = 5e5){
         N = n + 5;
         K = log2(N) + 1;
         a.resize(N);
         log.resize(N);
         st.resize(N, vector<int> (K, 1e15));
+    }
+
+    void build(vector<int> &a){
         log[1] = 0;
         for(int i = 2; i < N; i++)
             log[i] = log[i / 2] + 1;
