@@ -16,11 +16,15 @@ struct segtree{
     vector<node> tree;
 
     segtree(int n = 1e5){
+        init(n);
+    }
+
+    void init(int n){
         N = n;
         n += 5;
         tree.resize(4 * n);
     }
-
+    
     node combine(node a, node b){
         return node(a.sum + b.sum);
     }
