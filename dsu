@@ -20,6 +20,10 @@ struct dsu{
         return par[x] = (par[x] == x) ? x : find(par[x]);
     }
 
+    int size(int x){
+        return siz[find(x)];
+    }
+
     bool same(int x, int y){
         return find(x) == find(y);
     }
