@@ -4,6 +4,14 @@ https://www.geeksforgeeks.org/number-elements-less-equal-given-number-given-suba
 
 https://www.geeksforgeeks.org/longest-subarray-sum-elements-atmost-k/
 
+Nice ds
+Enables online insertion of (key, value) pairs and querying of maximum value over keys less than a given limit.
+https://www.hackerearth.com/challenges/competitive/october-easy-19/algorithm/absolute-tree-6aed7d30/submission/31998549/
+
+Ds supporting updates and queries of finding no. of elements less than k in a range
+Complexity sqrt(nlgn)
+https://codeforces.com/contest/1093/submission/47229079?mobile=false
+
 Maximum weight edge in path u -> v in a tree
 https://www.hackerearth.com/practice/algorithms/graphs/graph-representation/practice-problems/algorithm/optimal-connectivity-c6ae79ca/editorial/
 
