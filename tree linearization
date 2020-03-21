@@ -1,6 +1,6 @@
 const int N = 1e5 + 5;
 
-vi adj[N], in(N, 0), out(N, 0), linear(N, 0), sub(N, 0);
+vector<int> adj[N], in(N, 0), out(N, 0), linear(N, 0), sub(N, 0);
 int timer = 0;
 
 void dfs0(int x, int p){
