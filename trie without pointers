@@ -5,7 +5,7 @@ int trie[N][2], tot = 1;
 
 void insert(int n){
     int curr = 0;
-    bck(i, MX, -1){
+    for(int i = MX; i >= 0; i--){
         int ind = (n >> i) & 1;
         if(trie[curr][ind] == -1)
             trie[curr][ind] = tot++;
@@ -15,7 +15,7 @@ void insert(int n){
 
 int maxxor(int n){
     int ans = 0, curr = 0;
-    bck(i, MX, -1){
+    for(int i = MX; i >= 0; i--){
         int ind = (n >> i) & 1;
         if(trie[curr][!ind] != -1){
             ans |= 1 << i;
