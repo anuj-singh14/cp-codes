@@ -1,11 +1,13 @@
 //call prep() in main() before usage
+//to clear the nodes after usage, use delete
 int MX = 30;    //number of bits of max value to be inserted
 
 typedef struct data{
     data *nxt[2];
-    int cnt = 0;
+    int cnt;
     data(){
-        nxt[0] = nxt[1] = NULL;
+        cnt = 0;
+        nxt[0] = nxt[1] = nullptr;
     }
 }trie;
 
@@ -13,7 +15,7 @@ trie *head;
 
 void insert(int n){
     trie *curr = head;
-    bck(i, MX, -1){
+    for(int i = MX; i >= 0; i--){
         int ind = (n >> i) & 1;
         if(!curr -> nxt[ind])
             curr -> nxt[ind] = new trie();
@@ -24,7 +26,7 @@ void insert(int n){
 
 void remove(int n){
     trie *curr = head;
-    bck(i, MX, -1){
+    for(int i = MX; i >= 0; i--){
         int ind = (n >> i) & 1;
         curr = curr -> nxt[ind];
         curr -> cnt--;
@@ -34,7 +36,7 @@ void remove(int n){
 int maxxor(int n){
     trie *curr = head;
     int ans = 0;
-    bck(i, MX, -1){
+    for(int i = MX; i >= 0; i--){
         int ind = (n >> i) & 1;
         if(curr -> nxt[!ind] && curr -> nxt[!ind] -> cnt){
             ans |= 1 << i;
@@ -49,7 +51,7 @@ int maxxor(int n){
 int minxor(int n){
     trie *curr = head;
     int ans = 0;
-    bck(i, MX, -1){
+    for(int i = MX; i >= 0; i--){
         int ind = (n >> i) & 1;
         if(curr -> nxt[ind] && curr -> nxt[ind] -> cnt)
             curr = curr -> nxt[ind];
@@ -70,29 +72,29 @@ void prep(){
 //trie for strings
 typedef struct data{
     data *nxt[26];
-    int wt = 0, cnt = 0;
+    int cnt;
     data(){
-        for(int i = 0; i < 26; i++)   nxt[i] = NULL;
+        cnt = 0;
+        for(int i = 0; i < 26; i++)   nxt[i] = nullptr;
     }
 }trie;
 
 trie *head;
 
-void insert(string s, int wt){
+void insert(string s){
     trie *curr = head;
-    for(auto i : s){
+    for(auto i: s){
         int ind = i - 'a';
         if(!curr -> nxt[ind])
             curr -> nxt[ind] = new trie();
         curr = curr -> nxt[ind];
-        curr -> wt = max(curr -> wt, wt);
         curr -> cnt++;
     }
 }
 
 void remove(string s){
     trie *curr = head;
-    for(auto i : s){
+    for(auto i: s){
         int ind = i - 'a';
         curr = curr -> nxt[ind];
         curr -> cnt--;
@@ -106,11 +108,11 @@ int get(string s){
         if(!curr -> nxt[ind])    return -1;
         curr = curr -> nxt[ind];
     }
-    return curr -> wt;
+    return curr -> cnt;
 }
 
 void prep(){
     head = new trie();
-    insert("", 0);
+    insert("");
 }
 
