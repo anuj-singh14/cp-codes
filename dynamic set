@@ -13,8 +13,8 @@ least_frequent() : return least freqent element, if multiple then
 
 struct comp{
     bool operator() (pii a, pii b){
-        if(a.fi == b.fi)    return a.se > b.se;
-        return a.fi < b.fi;
+        if(a.first == b.first)    return a.second > b.second;
+        return a.first < b.first;
     }
 };
 
