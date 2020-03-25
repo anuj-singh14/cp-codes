@@ -12,7 +12,7 @@ least_frequent() : return least freqent element, if multiple then
 #define pii pair<int, int>
 
 struct comp{
-    bool operator() (pii a, pii b){
+    bool operator() (pii a, pii b) const {
         if(a.first == b.first)    return a.second > b.second;
         return a.first < b.first;
     }
@@ -20,9 +20,11 @@ struct comp{
 
 struct dset{
     map<int, int> m;
-    set<pii, comp> s1, s2;
+    set<pii> s1, s2;
+    multiset<int> elems;
 
     void inc(int x){
+        elems.insert(x);
         if(m.count(x)){
             int fr = m[x];
             auto k1 = s1.find({x, fr}); s1.erase(k1);
@@ -40,6 +42,7 @@ struct dset{
 
     void dec(int x){
         if(!m.count(x)) return;
+        elems.erase(elems.find(x));
         int fr = m[x];
         auto k1 = s1.find({x, fr}); s1.erase(k1);
         auto k2 = s2.find({fr, x}); s2.erase(k2);
@@ -51,7 +54,7 @@ struct dset{
 
     int most_freqent(){
         if(s1.empty())  return -1;
-        return (*s2.rbegin()).second;
+        return (*s2.rbegin()).first;
     }
 
     int least_frequent(){
