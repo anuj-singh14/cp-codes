@@ -2,14 +2,14 @@
 //to clear the nodes after usage, use delete
 int MX = 30;    //number of bits of max value to be inserted
 
-typedef struct data{
-    data *nxt[2];
+struct trie{
+    trie *nxt[2];
     int cnt;
-    data(){
+    trie(){
         cnt = 0;
         nxt[0] = nxt[1] = nullptr;
     }
-}trie;
+};
 
 trie *head;
 
