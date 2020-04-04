@@ -1,5 +1,5 @@
 const int N = 1e5 + 5;
-vi adj[N];
+vector<int> adj[N];
 bool vis[N], col[N];
 
 //returns 0 if graph isn't bipartite, else assigns colors such that vertices with same color will lie in same partition
