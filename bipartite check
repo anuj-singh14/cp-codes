@@ -5,7 +5,7 @@ bool vis[N], col[N];
 //returns 0 if graph isn't bipartite, else assigns colors such that vertices with same color will lie in same partition
 bool dfs(int x){
     vis[x] = 1;
-    for(int i : adj[x]){
+    for(auto &i: adj[x]){
         if(vis[i]){
             if(col[i] == col[x])    return 0;
             continue;
