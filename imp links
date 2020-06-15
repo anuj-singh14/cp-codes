@@ -4,6 +4,9 @@ https://www.geeksforgeeks.org/number-elements-less-equal-given-number-given-suba
 
 https://www.geeksforgeeks.org/longest-subarray-sum-elements-atmost-k/
 
+Sliding window medians
+https://cses.fi/problemset/hack/1076/entry/438882/
+
 Nice ds
 Enables online insertion of (key, value) pairs and querying of maximum value over keys less than a given limit.
 https://www.hackerearth.com/challenges/competitive/october-easy-19/algorithm/absolute-tree-6aed7d30/submission/31998549/
