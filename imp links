@@ -27,7 +27,7 @@ MAtrix expo variants
 https://www.hackerearth.com/practice/notes/matrix-exponentiation-1/
 
 Nice ds
-Enables online insertion of (key, value) pairs and querying of maximum value over keys less than a given limit.
+Supports online insertion of (key, value) pairs and querying of maximum value over keys less than a given limit.
 https://www.hackerearth.com/challenges/competitive/october-easy-19/algorithm/absolute-tree-6aed7d30/submission/31998549/
 
 Ds supporting updates and queries of finding no. of elements less than k in a range
